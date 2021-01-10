@@ -97,7 +97,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-30, 640, 1060, 130);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Cards/Menu.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1080, 772);
 
