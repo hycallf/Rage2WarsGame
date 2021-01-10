@@ -39,17 +39,14 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        btnPlay = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnShop = new javax.swing.JButton();
-        btnCard = new javax.swing.JButton();
-        btnGuide = new javax.swing.JButton();
-        btnAbout = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -67,91 +64,42 @@ public class Menu extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
-        btnPlay.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png"))); // NOI18N
-        btnPlay.setBorderPainted(false);
-        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 350, 400, 190));
+        jButton5.setFont(new java.awt.Font("Humnst777 Blk BT", 0, 36)); // NOI18N
+        jButton5.setText("Maen!");
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jButton5);
+        jButton5.setBounds(740, 290, 210, 150);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        btnShop.setBackground(new java.awt.Color(51, 51, 51));
-        btnShop.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnShop.setForeground(new java.awt.Color(255, 255, 255));
-        btnShop.setText("Shop");
-        btnShop.setBorderPainted(false);
-        btnShop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnShop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnShop.setIconTextGap(20);
-        btnShop.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel2.add(btnShop);
+        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton1.setText("Shop");
+        jPanel1.add(jButton1);
 
-        btnCard.setBackground(new java.awt.Color(51, 51, 51));
-        btnCard.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnCard.setForeground(new java.awt.Color(255, 255, 255));
-        btnCard.setText("Card Collection");
-        btnCard.setBorderPainted(false);
-        btnCard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCard.setIconTextGap(20);
-        btnCard.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel2.add(btnCard);
+        jButton2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton2.setText("Guide");
+        jPanel1.add(jButton2);
 
-        btnGuide.setBackground(new java.awt.Color(51, 51, 51));
-        btnGuide.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnGuide.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuide.setText("Guide");
-        btnGuide.setBorderPainted(false);
-        btnGuide.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuide.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuide.setIconTextGap(20);
-        btnGuide.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel2.add(btnGuide);
+        jButton6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton6.setText("Collection");
+        jPanel1.add(jButton6);
 
-        btnAbout.setBackground(new java.awt.Color(51, 51, 51));
-        btnAbout.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAbout.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbout.setText("About");
-        btnAbout.setBorderPainted(false);
-        btnAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAbout.setIconTextGap(20);
-        btnAbout.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel2.add(btnAbout);
+        jButton3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton3.setText("Leaderboard");
+        jPanel1.add(jButton3);
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("jButton1");
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setIconTextGap(20);
-        jButton1.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel2.add(jButton1);
+        jButton4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton4.setText("About");
+        jPanel1.add(jButton4);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 1900, 190));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(-30, 640, 1060, 130);
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setLayout(null);
-
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        jPanel3.add(jLabel2);
-        jLabel2.setBounds(30, 20, 110, 40);
-        jPanel3.add(jLabel1);
-        jLabel1.setBounds(30, 30, 50, 50);
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        jLabel4.setMaximumSize(new java.awt.Dimension(1920, 1080));
-        jLabel4.setMinimumSize(new java.awt.Dimension(1920, 1080));
-        jLabel4.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1900, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Cards/Menu.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1080, 772);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,19 +146,16 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbout;
-    private javax.swing.JButton btnCard;
-    private javax.swing.JButton btnGuide;
-    private javax.swing.JButton btnPlay;
-    private javax.swing.JButton btnShop;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
