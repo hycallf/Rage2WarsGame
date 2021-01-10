@@ -49,6 +49,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -68,11 +69,10 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPlay.setBackground(new java.awt.Color(255, 51, 51));
         btnPlay.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        btnPlay.setText("Play");
+        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png"))); // NOI18N
         btnPlay.setBorderPainted(false);
-        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 190, 90));
+        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 350, 400, 190));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -131,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
         jButton1.setPreferredSize(new java.awt.Dimension(150, 50));
         jPanel2.add(jButton1);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 1010, 100));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 1900, 190));
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(null);
@@ -140,11 +140,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(100, 20, 110, 40);
+        jLabel2.setBounds(30, 20, 110, 40);
         jPanel3.add(jLabel1);
         jLabel1.setBounds(30, 30, 50, 50);
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 140));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 80));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setMaximumSize(new java.awt.Dimension(1920, 1080));
+        jLabel4.setMinimumSize(new java.awt.Dimension(1920, 1080));
+        jLabel4.setPreferredSize(new java.awt.Dimension(1920, 1080));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1900, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,6 +206,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
