@@ -70,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
         jButton5.setText("Maen!");
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jButton5);
-        jButton5.setBounds(740, 290, 210, 150);
+        jButton5.setBounds(770, 180, 210, 150);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -95,11 +95,14 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.add(jButton4);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-30, 640, 1060, 130);
+        jPanel1.setBounds(110, 660, 800, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(1024, 768));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1024, 768));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1024, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1080, 772);
+        jLabel1.setBounds(0, 0, 1024, 768);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
