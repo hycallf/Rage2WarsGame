@@ -5,6 +5,8 @@
  */
 package tcg_osom;
 
+import java.awt.Color;
+
 /**
  *
  * @author Andiargetlam
@@ -16,6 +18,7 @@ public class DieFrame extends javax.swing.JFrame {
      */
     public DieFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,26 +30,75 @@ public class DieFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAgain = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton2.setText("Try Again");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 600, 170, 70));
+        btnAgain.setBackground(new java.awt.Color(51, 51, 51));
+        btnAgain.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btnAgain.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgain.setText("Try Again");
+        btnAgain.setBorder(null);
+        btnAgain.setBorderPainted(false);
+        btnAgain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAgainMouseEntered(evt);
+            }
+        });
+        btnAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgainActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAgain, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 600, 170, 70));
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jButton1.setText("Rage Quit");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 170, 70));
+        btnMenu.setBackground(new java.awt.Color(51, 51, 51));
+        btnMenu.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btnMenu.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenu.setText("Rage Quit");
+        btnMenu.setBorder(null);
+        btnMenu.setBorderPainted(false);
+        btnMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMenuMouseEntered(evt);
+            }
+        });
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 170, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Die.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgainActionPerformed
+        this.dispose();
+        GameFrame game = new GameFrame();
+        game.setVisible(true);
+    }//GEN-LAST:event_btnAgainActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        this.dispose();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAgainMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgainMouseEntered
+        btnAgain.setBackground(new java.awt.Color(20, 20, 20));
+    }//GEN-LAST:event_btnAgainMouseEntered
+
+    private void btnMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuMouseEntered
+         btnMenu.setBackground(new java.awt.Color(20, 20, 20));
+    }//GEN-LAST:event_btnMenuMouseEntered
 
     /**
      * @param args the command line arguments
@@ -85,8 +137,8 @@ public class DieFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAgain;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
