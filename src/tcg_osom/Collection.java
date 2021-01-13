@@ -248,7 +248,6 @@ public class Collection extends javax.swing.JFrame {
         getContentPane().add(description3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, 570, 40));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardList.png"))); // NOI18N
-        background.setText("Pl");
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -260,6 +259,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Scissor");
         description4.setText("Desc : AAAAAAAAAHHHH");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co7.png")));
     }//GEN-LAST:event_Grid7ActionPerformed
 
     private void Grid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid1ActionPerformed
@@ -268,6 +268,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : S");
         description3.setText("Type : Scissor");
         description4.setText("Desc : He's a Good Boi");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co1.png")));
     }//GEN-LAST:event_Grid1ActionPerformed
 
     private void Grid2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid2ActionPerformed
@@ -276,6 +277,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : S");
         description3.setText("Type : Paper");
         description4.setText("Desc : NEVER GONNA GIVE YOU UP");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co2.png")));
     }//GEN-LAST:event_Grid2ActionPerformed
 
     private void Grid3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid3ActionPerformed
@@ -284,6 +286,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : S");
         description3.setText("Type : Rock");
         description4.setText("Desc : TROLOLOLOLO");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co3.png")));
     }//GEN-LAST:event_Grid3ActionPerformed
 
     private void Grid4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid4ActionPerformed
@@ -292,6 +295,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Scissor");
         description4.setText("Desc : cool and good");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co4.png")));
     }//GEN-LAST:event_Grid4ActionPerformed
 
     private void Grid5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid5ActionPerformed
@@ -300,6 +304,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Rock");
         description4.setText("Desc : feels good man");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co5.png")));
     }//GEN-LAST:event_Grid5ActionPerformed
 
     private void Grid6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid6ActionPerformed
@@ -308,6 +313,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Paper");
         description4.setText("Desc : Such doge, much wow. Wow");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co6.png")));
     }//GEN-LAST:event_Grid6ActionPerformed
 
     private void Grid14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid14ActionPerformed
@@ -316,6 +322,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Rock");
         description4.setText("Desc : WRONG CARD NAME!!DELETE THE FAKE PNG!!");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co14.png")));
     }//GEN-LAST:event_Grid14ActionPerformed
 
     private void Grid13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid13ActionPerformed
@@ -324,6 +331,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Scissor");
         description4.setText("Desc : WHY IS THERE TWO OF ME");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co13.png")));
     }//GEN-LAST:event_Grid13ActionPerformed
 
     private void Grid12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid12ActionPerformed
@@ -332,6 +340,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Paper");
         description4.setText("Desc : B*tch Please");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co12.png")));
     }//GEN-LAST:event_Grid12ActionPerformed
 
     private void Grid11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid11ActionPerformed
@@ -340,6 +349,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Rock");
         description4.setText("Desc : Oh F* i just ate a bowl of rock");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co11.png")));
     }//GEN-LAST:event_Grid11ActionPerformed
 
     private void Grid10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid10ActionPerformed
@@ -348,6 +358,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Scissor");
         description4.setText("Desc : Diccbudd");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co10.png")));
     }//GEN-LAST:event_Grid10ActionPerformed
 
     private void Grid9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid9ActionPerformed
@@ -356,6 +367,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Paper");
         description4.setText("Desc : Epstein didn't kill himself");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co9.png")));
     }//GEN-LAST:event_Grid9ActionPerformed
 
     private void Grid8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid8ActionPerformed
@@ -364,6 +376,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : A");
         description3.setText("Type : Rock");
         description4.setText("Desc : Why is my type is a rock");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co8.png")));
     }//GEN-LAST:event_Grid8ActionPerformed
 
     private void Grid21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid21ActionPerformed
@@ -372,6 +385,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Paper");
         description4.setText("Desc : Royal Flush! Skakmat!");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co21.png")));
     }//GEN-LAST:event_Grid21ActionPerformed
 
     private void Grid20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid20ActionPerformed
@@ -380,6 +394,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Rock");
         description4.setText("Desc : BONK!");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co20.png")));
     }//GEN-LAST:event_Grid20ActionPerformed
 
     private void Grid19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid19ActionPerformed
@@ -388,6 +403,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Scissor");
         description4.setText("Desc : Yep the name is Derp");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co19.png")));
     }//GEN-LAST:event_Grid19ActionPerformed
 
     private void Grid18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid18ActionPerformed
@@ -396,6 +412,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Paper");
         description4.setText("Desc : LOLOLOL");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co18.png")));
     }//GEN-LAST:event_Grid18ActionPerformed
 
     private void Grid17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid17ActionPerformed
@@ -404,6 +421,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Rock");
         description4.setText("Desc : I'm gonna put some dirt in your eye");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co17.png")));
     }//GEN-LAST:event_Grid17ActionPerformed
 
     private void Grid16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid16ActionPerformed
@@ -412,6 +430,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Scissor");
         description4.setText("Desc : CLOSE UP FACE");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co16.png")));
     }//GEN-LAST:event_Grid16ActionPerformed
 
     private void Grid15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grid15ActionPerformed
@@ -420,6 +439,7 @@ public class Collection extends javax.swing.JFrame {
         description2.setText("Class : B");
         description3.setText("Type : Paper");
         description4.setText("Desc : i forgot to put milk on the cereal");
+        CardPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColHighlight/Co15.png")));
     }//GEN-LAST:event_Grid15ActionPerformed
 
     /**
