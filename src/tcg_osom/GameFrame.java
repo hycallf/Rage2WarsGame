@@ -15,10 +15,10 @@ public class GameFrame extends javax.swing.JFrame {
 
 private final card[] Card = new card[21];
     private final int[] Indexes = new int[5];
-    private int healthP1 = 4000;
-    private int healthCPU = 4000;
+    private int healthP1 = 3000;
+    private int healthCPU = 3000;
     private card Cpu, P1 = null;
-    private int P1_graveyard = 0, Cpu_graveyard = 0, P1_deck = 19, Cpu_deck = 19;
+    private int P1_graveyard = 0, Cpu_graveyard = 0, P1_deck = 16, Cpu_deck = 21;
     int turn = 0;
 
     /**
@@ -144,6 +144,7 @@ private final card[] Card = new card[21];
         deck_5 = new javax.swing.JButton();
         hp_p1_label = new javax.swing.JLabel();
         hp_cpu_label = new javax.swing.JLabel();
+        dmgToCPU = new javax.swing.JLabel();
         highlight_1 = new javax.swing.JLabel();
         highlight_2 = new javax.swing.JLabel();
         p1_deck_label = new javax.swing.JLabel();
@@ -203,6 +204,11 @@ private final card[] Card = new card[21];
         hp_cpu_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         hp_cpu_label.setText("HP CPU : 4000");
         getContentPane().add(hp_cpu_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        dmgToCPU.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dmgToCPU.setForeground(new java.awt.Color(255, 0, 0));
+        dmgToCPU.setText("jLabel2");
+        getContentPane().add(dmgToCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
         getContentPane().add(highlight_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 170, 300));
         getContentPane().add(highlight_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 170, 290));
 
@@ -320,6 +326,7 @@ private final card[] Card = new card[21];
     private javax.swing.JButton deck_3;
     private javax.swing.JButton deck_4;
     private javax.swing.JButton deck_5;
+    private javax.swing.JLabel dmgToCPU;
     private javax.swing.JProgressBar healthBar;
     private javax.swing.JProgressBar healthBar1;
     private javax.swing.JPanel healthBarPanel;
