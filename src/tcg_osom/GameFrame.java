@@ -5,6 +5,7 @@
  */
 package tcg_osom;
 
+import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
 /**
@@ -26,6 +27,7 @@ private final card[] Card = new card[21];
      */
     public GameFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         Card[0] = new card("Card1.png", "Highlight1.png", "Buff Doge", "gunting", 500);
         Card[1] = new card("Card2.png", "Highlight2.png", "Rick'roll", "kertas", 500);
         Card[2] = new card("Card3.png", "Highlight3.png", "U Mad bro?", "batu", 500);
@@ -53,7 +55,8 @@ private final card[] Card = new card[21];
     }
 
     private int getRandomIndex() {
-        return new Random().nextInt(20 - 0) + 0;
+        return new Random().nextInt(21 - 0);
+        
     }
     
     private void setAllLabel() {
@@ -93,7 +96,7 @@ private final card[] Card = new card[21];
         battle();
         setAllLabel();
     }
-
+    
     @SuppressWarnings("empty-statement")
     private void battle() {
         if ((Cpu.getType().equals("kertas") && P1.getType().equals("batu"))
@@ -111,7 +114,9 @@ private final card[] Card = new card[21];
             Cpu_deck -= 1;
             Cpu_graveyard += 1;
             turn++;
-        } else {
+        } else if ((Cpu.getType().equals("kertas") && P1.getType().equals("gunting"))
+                || (Cpu.getType().equals("gunting") && P1.getType().equals("batu"))
+                || (Cpu.getType().equals("batu") && P1.getType().equals("kertas"))) {
             Cpu_deck -= 1;
             Cpu_graveyard += 1;
             healthCPU -= P1.getDamage();
@@ -145,6 +150,7 @@ private final card[] Card = new card[21];
         hp_p1_label = new javax.swing.JLabel();
         hp_cpu_label = new javax.swing.JLabel();
         dmgToCPU = new javax.swing.JLabel();
+        dmgToP1 = new javax.swing.JLabel();
         highlight_1 = new javax.swing.JLabel();
         highlight_2 = new javax.swing.JLabel();
         p1_deck_label = new javax.swing.JLabel();
@@ -162,40 +168,85 @@ private final card[] Card = new card[21];
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        deck_1.setBorderPainted(false);
+        deck_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deck_1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deck_1MouseExited(evt);
+            }
+        });
         deck_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deck_1ActionPerformed(evt);
             }
         });
-        getContentPane().add(deck_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 130, 220));
+        getContentPane().add(deck_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 480, 135, 230));
 
+        deck_2.setBorderPainted(false);
+        deck_2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deck_2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deck_2MouseExited(evt);
+            }
+        });
         deck_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deck_2ActionPerformed(evt);
             }
         });
-        getContentPane().add(deck_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, 130, 220));
+        getContentPane().add(deck_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 480, 135, 230));
 
+        deck_3.setBorderPainted(false);
+        deck_3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deck_3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deck_3MouseExited(evt);
+            }
+        });
         deck_3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deck_3ActionPerformed(evt);
             }
         });
-        getContentPane().add(deck_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 480, 130, 220));
+        getContentPane().add(deck_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 480, 135, 230));
 
+        deck_4.setBorderPainted(false);
+        deck_4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deck_4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deck_4MouseExited(evt);
+            }
+        });
         deck_4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deck_4ActionPerformed(evt);
             }
         });
-        getContentPane().add(deck_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 480, 130, 220));
+        getContentPane().add(deck_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(699, 480, 135, 230));
 
+        deck_5.setBorderPainted(false);
+        deck_5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deck_5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deck_5MouseExited(evt);
+            }
+        });
         deck_5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deck_5ActionPerformed(evt);
             }
         });
-        getContentPane().add(deck_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 480, 130, 220));
+        getContentPane().add(deck_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 480, 135, 230));
 
         hp_p1_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         hp_p1_label.setText("HP Player : 4000");
@@ -207,10 +258,13 @@ private final card[] Card = new card[21];
 
         dmgToCPU.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         dmgToCPU.setForeground(new java.awt.Color(255, 0, 0));
-        dmgToCPU.setText("jLabel2");
-        getContentPane().add(dmgToCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
-        getContentPane().add(highlight_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 170, 300));
-        getContentPane().add(highlight_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 170, 290));
+        getContentPane().add(dmgToCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 120, 30));
+
+        dmgToP1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dmgToP1.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(dmgToP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 690, 100, 30));
+        getContentPane().add(highlight_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 62, 170, 300));
+        getContentPane().add(highlight_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 72, 170, 290));
 
         p1_deck_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         p1_deck_label.setText("Deck : x00");
@@ -234,6 +288,11 @@ private final card[] Card = new card[21];
 
         btnMenu.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, 50));
 
         healthBarPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,24 +322,89 @@ private final card[] Card = new card[21];
     }// </editor-fold>//GEN-END:initComponents
 
     private void deck_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_1ActionPerformed
-        deckOnClick(0);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        if(konfirm == 0){
+            deckOnClick(0);
+        }
     }//GEN-LAST:event_deck_1ActionPerformed
 
     private void deck_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_2ActionPerformed
-        deckOnClick(1);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        if(konfirm == 0){
+            deckOnClick(1);
+        }
     }//GEN-LAST:event_deck_2ActionPerformed
 
     private void deck_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_3ActionPerformed
-        deckOnClick(2);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        if(konfirm == 0){
+            deckOnClick(2);
+        }
     }//GEN-LAST:event_deck_3ActionPerformed
 
     private void deck_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_4ActionPerformed
-        deckOnClick(3);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        if(konfirm == 0){
+            deckOnClick(3);
+        }
     }//GEN-LAST:event_deck_4ActionPerformed
 
     private void deck_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_5ActionPerformed
-        deckOnClick(4);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        if(konfirm == 0){
+            deckOnClick(4);
+        }
     }//GEN-LAST:event_deck_5ActionPerformed
+
+    private void deck_1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_1MouseEntered
+        deck_1.setBackground(Color.blue);
+    }//GEN-LAST:event_deck_1MouseEntered
+
+    private void deck_1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_1MouseExited
+        deck_1.setBackground(new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_deck_1MouseExited
+
+    private void deck_2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_2MouseEntered
+        deck_2.setBackground(Color.blue);
+    }//GEN-LAST:event_deck_2MouseEntered
+
+    private void deck_2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_2MouseExited
+        deck_2.setBackground(new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_deck_2MouseExited
+
+    private void deck_3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_3MouseEntered
+        deck_3.setBackground(Color.blue);
+    }//GEN-LAST:event_deck_3MouseEntered
+
+    private void deck_3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_3MouseExited
+        deck_3.setBackground(new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_deck_3MouseExited
+
+    private void deck_4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_4MouseEntered
+        deck_4.setBackground(Color.blue);
+    }//GEN-LAST:event_deck_4MouseEntered
+
+    private void deck_4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_4MouseExited
+        deck_4.setBackground(new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_deck_4MouseExited
+
+    private void deck_5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_5MouseEntered
+        deck_5.setBackground(Color.blue);
+    }//GEN-LAST:event_deck_5MouseEntered
+
+    private void deck_5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_5MouseExited
+        deck_5.setBackground(new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_deck_5MouseExited
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        int konfirm = JOptionPane.showConfirmDialog(null, "Back to menu","Exit game", JOptionPane.YES_NO_OPTION);
+
+        if(konfirm == 0){
+            this.dispose();
+            Menu menu = new Menu();
+            menu.setVisible(true);
+        }
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,6 +451,7 @@ private final card[] Card = new card[21];
     private javax.swing.JButton deck_4;
     private javax.swing.JButton deck_5;
     private javax.swing.JLabel dmgToCPU;
+    private javax.swing.JLabel dmgToP1;
     private javax.swing.JProgressBar healthBar;
     private javax.swing.JProgressBar healthBar1;
     private javax.swing.JPanel healthBarPanel;

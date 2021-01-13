@@ -16,6 +16,7 @@ public class WinFrame extends javax.swing.JFrame {
      */
     public WinFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,10 +37,20 @@ public class WinFrame extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jButton1.setText("Rage Quit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 170, 70));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jButton2.setText("Try Again");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 580, 170, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/win.png"))); // NOI18N
@@ -47,6 +58,18 @@ public class WinFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        GameFrame game = new GameFrame();
+        game.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
