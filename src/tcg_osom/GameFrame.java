@@ -19,7 +19,7 @@ private final card[] Card = new card[21];
     private int healthP1 = 3000;
     private int healthCPU = 3000;
     private card Cpu, P1 = null;
-    private int P1_graveyard = 0, Cpu_graveyard = 0, P1_deck = 16, Cpu_deck = 21;
+    private int P1_graveyard = 0, Cpu_graveyard = 0, P1_deck = 20, Cpu_deck = 20;
     int turn = 0;
 
     /**
@@ -55,7 +55,7 @@ private final card[] Card = new card[21];
     }
 
     private int getRandomIndex() {
-        return new Random().nextInt(21 - 0);
+        return new Random().nextInt(20 - 0);
         
     }
     
@@ -67,6 +67,10 @@ private final card[] Card = new card[21];
         hp_p1_label.setText("HP Player : "+ healthP1);
         hp_cpu_label.setText("HP CPU : "+ healthCPU);
         turnLabel.setText("Turn : "+ turn);
+        healthBar.setValue(healthP1);
+        healthBar.setBackground(Color.green);
+        healthBar1.setValue(healthCPU);
+        healthBar1.setBackground(Color.green);
     }
 
     private void getFirstIndexes() {
@@ -249,11 +253,11 @@ private final card[] Card = new card[21];
         getContentPane().add(deck_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(845, 480, 135, 230));
 
         hp_p1_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        hp_p1_label.setText("HP Player : 4000");
+        hp_p1_label.setText("HP Player : 3000");
         getContentPane().add(hp_p1_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         hp_cpu_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        hp_cpu_label.setText("HP CPU : 4000");
+        hp_cpu_label.setText("HP CPU : 3000");
         getContentPane().add(hp_cpu_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         dmgToCPU.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -297,9 +301,9 @@ private final card[] Card = new card[21];
 
         healthBarPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        healthBar1.setBackground(new java.awt.Color(0, 204, 204));
-        healthBar1.setMaximum(4000);
-        healthBar1.setValue(4000);
+        healthBar1.setBackground(new java.awt.Color(0, 153, 51));
+        healthBar1.setMaximum(3000);
+        healthBar1.setToolTipText("");
         healthBar1.setBorderPainted(false);
         healthBarPanel1.add(healthBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 30));
 
@@ -307,9 +311,8 @@ private final card[] Card = new card[21];
 
         healthBarPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        healthBar.setBackground(new java.awt.Color(0, 204, 204));
-        healthBar.setMaximum(4000);
-        healthBar.setValue(4000);
+        healthBar.setBackground(new java.awt.Color(0, 153, 51));
+        healthBar.setMaximum(3000);
         healthBar.setBorderPainted(false);
         healthBarPanel.add(healthBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 30));
 

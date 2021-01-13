@@ -5,6 +5,8 @@
  */
 package tcg_osom;
 
+import java.awt.Color;
+
 /**
  *
  * @author KuroNeko
@@ -16,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,10 +32,10 @@ public class Menu extends javax.swing.JFrame {
 
         btnPlay = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnDeck = new javax.swing.JButton();
+        btnGuide = new javax.swing.JButton();
+        btnAbout = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,41 +53,78 @@ public class Menu extends javax.swing.JFrame {
                 btnPlayMouseExited(evt);
             }
         });
-        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 450, 190));
+        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 210, 140));
 
-        jPanel1.setBackground(new java.awt.Color(7, 7, 7));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 90));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(7, 7, 7));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("jButton1");
-        jButton1.setBorder(null);
-        jPanel1.add(jButton1);
+        btnDeck.setBackground(new java.awt.Color(51, 51, 51));
+        btnDeck.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnDeck.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeck.setText("My Deck");
+        btnDeck.setBorder(null);
+        btnDeck.setBorderPainted(false);
+        btnDeck.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDeckMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDeckMouseExited(evt);
+            }
+        });
+        btnDeck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeckActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDeck, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
 
-        jButton2.setBackground(new java.awt.Color(7, 7, 7));
-        jButton2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("jButton2");
-        jButton2.setBorder(null);
-        jPanel1.add(jButton2);
+        btnGuide.setBackground(new java.awt.Color(51, 51, 51));
+        btnGuide.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnGuide.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuide.setText("Guide");
+        btnGuide.setBorder(null);
+        btnGuide.setBorderPainted(false);
+        btnGuide.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuideMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuideMouseExited(evt);
+            }
+        });
+        btnGuide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuideActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 150, 40));
 
-        jButton3.setBackground(new java.awt.Color(7, 7, 7));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("jButton3");
-        jButton3.setBorder(null);
-        jPanel1.add(jButton3);
+        btnAbout.setBackground(new java.awt.Color(51, 51, 51));
+        btnAbout.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnAbout.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbout.setText("About");
+        btnAbout.setBorder(null);
+        btnAbout.setBorderPainted(false);
+        btnAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 150, 40));
 
-        jButton4.setBackground(new java.awt.Color(7, 7, 7));
-        jButton4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("jButton4");
-        jButton4.setBorder(null);
-        jPanel1.add(jButton4);
+        btnExit.setBackground(new java.awt.Color(51, 51, 51));
+        btnExit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("Exit");
+        btnExit.setBorder(null);
+        btnExit.setBorderPainted(false);
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 150, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 1024, 90));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
 
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, 760));
 
@@ -104,6 +144,40 @@ public class Menu extends javax.swing.JFrame {
         GameFrame game = new GameFrame();
         game.setVisible(true);
     }//GEN-LAST:event_btnPlayMouseClicked
+
+    private void btnDeckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeckActionPerformed
+        this.dispose();
+        DeckCard col = new DeckCard();
+        col.setVisible(true);
+        
+    }//GEN-LAST:event_btnDeckActionPerformed
+
+    private void btnDeckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeckMouseEntered
+        btnDeck.setBackground(new java.awt.Color(15, 15, 15));
+    }//GEN-LAST:event_btnDeckMouseEntered
+
+    private void btnDeckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeckMouseExited
+        btnDeck.setBackground(new java.awt.Color(51, 51, 51));
+    }//GEN-LAST:event_btnDeckMouseExited
+
+    private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
+        this.dispose();
+        Tutorial1 guide = new Tutorial1();
+        guide.setVisible(true);
+    }//GEN-LAST:event_btnGuideActionPerformed
+
+    private void btnGuideMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseEntered
+        btnDeck.setBackground(new java.awt.Color(15, 15, 15));
+    }//GEN-LAST:event_btnGuideMouseEntered
+
+    private void btnGuideMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseExited
+       btnDeck.setBackground(new java.awt.Color(51, 51, 51));
+    }//GEN-LAST:event_btnGuideMouseExited
+
+    private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_btnAboutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,12 +215,13 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbout;
+    private javax.swing.JButton btnDeck;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnGuide;
     private javax.swing.JLabel btnPlay;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
 }
