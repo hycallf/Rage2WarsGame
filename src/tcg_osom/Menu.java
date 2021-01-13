@@ -107,6 +107,11 @@ public class Menu extends javax.swing.JFrame {
         btnAbout.setText("About");
         btnAbout.setBorder(null);
         btnAbout.setBorderPainted(false);
+        btnAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAboutMouseClicked(evt);
+            }
+        });
         btnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAboutActionPerformed(evt);
@@ -120,6 +125,11 @@ public class Menu extends javax.swing.JFrame {
         btnExit.setText("Exit");
         btnExit.setBorder(null);
         btnExit.setBorderPainted(false);
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 150, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
@@ -175,9 +185,20 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuideMouseExited
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        this.dispose();
-        
+
     }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void btnAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        AboutUs abott = new AboutUs();
+        abott.setVisible(true);
+    }//GEN-LAST:event_btnAboutMouseClicked
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnExitMouseClicked
 
     /**
      * @param args the command line arguments
