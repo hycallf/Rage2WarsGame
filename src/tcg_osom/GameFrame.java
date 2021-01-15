@@ -5,15 +5,17 @@
  */
 package tcg_osom;
 
-import java.awt.Color;
-import java.util.Random;
+import java.awt.*;
 import javax.swing.JOptionPane;
+import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  *
  * @author KuroNeko
  */
 public class GameFrame extends javax.swing.JFrame {
-
+Timer timer;
 private final card[] Card = new card[21];
     private final int[] Indexes = new int[5];
     private int healthP1 = 3000;
@@ -21,6 +23,7 @@ private final card[] Card = new card[21];
     private card Cpu, P1 = null;
     private int P1_graveyard = 0, Cpu_graveyard = 0, P1_deck = 20, Cpu_deck = 20;
     int turn = 0;
+
 
     /**
      * Creates new form GameFrame
@@ -52,6 +55,10 @@ private final card[] Card = new card[21];
         getFirstIndexes();
         setImageDeck();
         setAllLabel();
+        timer = new Timer();
+        timer.schedule(new countdown(), 0, 1000);
+        
+        
     }
 
     private int getRandomIndex() {
@@ -68,9 +75,8 @@ private final card[] Card = new card[21];
         hp_cpu_label.setText("HP CPU : "+ healthCPU);
         turnLabel.setText("Turn : "+ turn);
         healthBar.setValue(healthP1);
-        healthBar.setBackground(Color.green);
         healthBar1.setValue(healthCPU);
-        healthBar1.setBackground(Color.green);
+        
     }
 
     private void getFirstIndexes() {
@@ -89,6 +95,25 @@ private final card[] Card = new card[21];
         deck_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Cards/" + Card[Indexes[4]].getImage())));
     }
 
+//    private void timeUp(){
+//
+//        if (isTimeUp == true){
+//                int konfirm = JOptionPane.showConfirmDialog(null, "Will be selected a random card","Times Up", JOptionPane.OK_OPTION);
+//                if(konfirm == 0){
+//                    Random z = new Random(4-0);
+//                    int indexRandom = z.nextInt();
+//                    P1 = Card[Indexes[indexRandom]];
+//                    Cpu = Card[getRandomIndex()];
+//                    highlight_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardHighlight/" + P1.getHighlight())));
+//                    highlight_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardHighlight/" + Cpu.getHighlight())));
+//                    Indexes[indexRandom] = getRandomIndex();
+//                    setImageDeck();
+//                    battle();
+//                    setAllLabel();
+//                    
+//                }
+//         }
+//    }
     private void deckOnClick(int index) {
         
         P1 = Card[Indexes[index]];
@@ -99,6 +124,30 @@ private final card[] Card = new card[21];
         setImageDeck();
         battle();
         setAllLabel();
+        getTimer();
+    }
+    
+    private void getTimer(){
+        timer.cancel();
+        lbTimer.setText(String.valueOf(60));
+        timer = new Timer();
+        timer.schedule(new countdown(), 0, 1000);
+
+    }
+
+   public class countdown extends TimerTask {
+        int sec = Integer.parseInt(lbTimer.getText());
+        
+        
+        public void run() {
+            if (sec > 0){
+                lbTimer.setText(String.valueOf(sec));
+                sec--;
+            }else{
+                lbTimer.setText("0");
+            }
+            
+        }
     }
     
     @SuppressWarnings("empty-statement")
@@ -167,6 +216,8 @@ private final card[] Card = new card[21];
         healthBar1 = new javax.swing.JProgressBar();
         healthBarPanel = new javax.swing.JPanel();
         healthBar = new javax.swing.JProgressBar();
+        lbTimer = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -318,6 +369,14 @@ private final card[] Card = new card[21];
 
         getContentPane().add(healthBarPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 190, 20));
 
+        lbTimer.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lbTimer.setText("60");
+        getContentPane().add(lbTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel3.setText("Cooldown :");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/GameScreen.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
@@ -325,7 +384,7 @@ private final card[] Card = new card[21];
     }// </editor-fold>//GEN-END:initComponents
 
     private void deck_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_1ActionPerformed
-        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.OK_OPTION);
         if(konfirm == 0){
             deckOnClick(0);
         }
@@ -400,6 +459,7 @@ private final card[] Card = new card[21];
     }//GEN-LAST:event_deck_5MouseExited
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        timer.cancel();
         int konfirm = JOptionPane.showConfirmDialog(null, "Back to menu","Exit game", JOptionPane.YES_NO_OPTION);
 
         if(konfirm == 0){
@@ -439,7 +499,7 @@ private final card[] Card = new card[21];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GameFrame().setVisible(true);
+                new GameFrame().setVisible(true); 
             }
         });
     }
@@ -464,6 +524,8 @@ private final card[] Card = new card[21];
     private javax.swing.JLabel hp_cpu_label;
     private javax.swing.JLabel hp_p1_label;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbTimer;
     private javax.swing.JLabel p1_deck_label;
     private javax.swing.JLabel p1_graveyard_label;
     private javax.swing.JLabel turnLabel;
