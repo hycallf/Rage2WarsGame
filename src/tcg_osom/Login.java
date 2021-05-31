@@ -4,19 +4,25 @@
  * and open the template in the editor.
  */
 package tcg_osom;
+import java.sql.*;
 
 /**
  *
  * @author KuroNeko
  */
-public class Login extends javax.swing.JFrame {
-
+public class Login extends javax.swing.JFrame implements DBConnection{
+    static Connection conn;
+    static Statement stmt;
+    static ResultSet rs;
+    
+    
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -28,15 +34,37 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
+        lb2 = new javax.swing.JLabel();
+        lbSuccess = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
-        txtusername = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtUsername = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel3.setText("click here to Register");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, 30));
+
+        lb2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lb2.setForeground(new java.awt.Color(255, 255, 255));
+        lb2.setText("Don't Have an account?");
+        getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, 30));
+
+        lbSuccess.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbSuccess.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lbSuccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 210, 20));
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -54,17 +82,17 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 0, 45, 45));
 
-        txtusername.setBackground(new java.awt.Color(8, 8, 8));
-        txtusername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtusername.setForeground(new java.awt.Color(255, 255, 255));
-        txtusername.setBorder(null);
-        getContentPane().add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 310, 40));
+        txtUsername.setBackground(new java.awt.Color(8, 8, 8));
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setBorder(null);
+        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 310, 40));
 
-        jPasswordField1.setBackground(new java.awt.Color(7, 7, 7));
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setBorder(null);
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 310, 40));
+        txtPassword.setBackground(new java.awt.Color(7, 7, 7));
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(255, 255, 255));
+        txtPassword.setBorder(null);
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 310, 40));
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLogin.png"))); // NOI18N
         btnLogin.setBorder(null);
@@ -87,12 +115,44 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        String user = txtUsername.getText();
+        String pass = txtPassword.getText();
+        String sql = "SELECT * FROM account WHERE username = '"+user+"' AND password = '"+pass+"'";
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            
+            
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            
+            while(rs.next()){
+                if(username.equals(user) && password.equals(pass)){
+                Menu menu = new Menu(username);
+                this.setVisible(false);
+                menu.setVisible(true);
+                break;
+            }  
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        RegisterFrame regis = new RegisterFrame();
+        this.setVisible(false);
+        regis.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -133,7 +193,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField txtusername;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lb2;
+    private javax.swing.JLabel lbSuccess;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

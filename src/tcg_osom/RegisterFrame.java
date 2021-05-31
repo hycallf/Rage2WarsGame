@@ -7,18 +7,33 @@ package tcg_osom;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author KuroNeko
  */
-public class RegisterFrame extends javax.swing.JFrame {
 
+
+public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
+// Menyiapkan paramter JDBC untuk koneksi ke datbase
+//    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+//    static final String DB_URL = "jdbc:mysql://localhost/tcg_osom";
+//    static final String USER = "root";
+//    static final String PASS = "";
+
+    // Menyiapkan objek yang diperlukan untuk mengelola database
+    static Connection conn;
+    static Statement stmt;
+    static ResultSet rs;
+    public Login login = new Login();
     /**
      * Creates new form RegisterFrame
      */
     public RegisterFrame() {
         initComponents();
+        
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 //        this.setSize(layar.width,layar.height);       
         int kiri = (layar.width-this.getSize().width)/2;       
@@ -35,22 +50,61 @@ public class RegisterFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtusername = new javax.swing.JTextField();
+        lbSuccess = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lb2 = new javax.swing.JLabel();
+        btnRegis = new javax.swing.JButton();
+        txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         txtMail = new javax.swing.JTextField();
         txtNickname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtusername.setBackground(new java.awt.Color(8, 8, 8));
-        txtusername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtusername.setForeground(new java.awt.Color(255, 255, 255));
-        txtusername.setBorder(null);
-        getContentPane().add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, 40));
+        lbSuccess.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbSuccess.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lbSuccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 210, 20));
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel3.setText("click here to Login");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
+
+        lb2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lb2.setForeground(new java.awt.Color(255, 255, 255));
+        lb2.setText("Already have an account, ");
+        getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
+
+        btnRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnRegis.png"))); // NOI18N
+        btnRegis.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        btnRegis.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnRegis-Hover.png"))); // NOI18N
+        btnRegis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, -1, -1));
+
+        txtUsername.setBackground(new java.awt.Color(8, 8, 8));
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setBorder(null);
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 310, 40));
 
         txtPassword.setBackground(new java.awt.Color(7, 7, 7));
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -73,8 +127,67 @@ public class RegisterFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Register.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 0, 45, 45));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
+        try{
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+            String username = txtUsername.getText();
+            String password = txtPassword.getText();
+            String mail = txtMail.getText();
+            String nick = txtNickname.getText();
+            
+            String sql = "INSERT INTO account (username, password, email, nickname) VALUE('%s','%s','%s','%s')";
+            sql = String.format(sql, username, password, mail, nick);
+            
+            stmt.execute(sql);
+            stmt.close();
+            conn.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(null, "New account has been created");
+        
+        this.setVisible(false);
+        login.setVisible(true);
+        
+    }//GEN-LAST:event_btnRegisActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -112,10 +225,15 @@ public class RegisterFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnRegis;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lb2;
+    private javax.swing.JLabel lbSuccess;
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtNickname;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtusername;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

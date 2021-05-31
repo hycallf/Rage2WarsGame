@@ -12,13 +12,18 @@ import java.awt.Color;
  * @author KuroNeko
  */
 public class Menu extends javax.swing.JFrame {
-
+public String user;
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
+        
+    }
+    Menu(String user){
+        this.user = user;
+        
     }
 
     /**
