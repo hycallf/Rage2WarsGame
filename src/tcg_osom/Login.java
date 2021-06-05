@@ -5,6 +5,7 @@
  */
 package tcg_osom;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -111,12 +112,39 @@ public class Login extends javax.swing.JFrame{
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String user = txtUsername.getText();
-        String pass = txtPassword.getText();
+        PreparedStatement ps;
+        ResultSet rs;
+        String username = txtUsername.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+        
+        String query = "SELECT * FROM account WHERE username =? AND password =?";
+        
+        try {
+            ps = DBConnection.config().prepareStatement(query);
+            
+            ps.setString(1, username);
+            ps.setString(2, password);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                    Menu menu = new Menu(username);
+                    menu.setVisible(true);
+                    
+                    this.dispose();
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username Or Password", "Login Failed", 2);
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "koneksi gagal "+e.getMessage());
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
