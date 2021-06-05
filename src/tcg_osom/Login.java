@@ -10,11 +10,7 @@ import java.sql.*;
  *
  * @author KuroNeko
  */
-public class Login extends javax.swing.JFrame implements DBConnection{
-    static Connection conn;
-    static Statement stmt;
-    static ResultSet rs;
-    
+public class Login extends javax.swing.JFrame{
     
     /**
      * Creates new form Login
@@ -117,31 +113,6 @@ public class Login extends javax.swing.JFrame implements DBConnection{
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user = txtUsername.getText();
         String pass = txtPassword.getText();
-        String sql = "SELECT * FROM account WHERE username = '"+user+"' AND password = '"+pass+"'";
-        try{
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            
-            
-            String username = rs.getString("username");
-            String password = rs.getString("password");
-            
-            while(rs.next()){
-                if(username.equals(user) && password.equals(pass)){
-                Menu menu = new Menu(username);
-                this.setVisible(false);
-                menu.setVisible(true);
-                break;
-            }  
-            }
-            
-            stmt.close();
-            conn.close();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed

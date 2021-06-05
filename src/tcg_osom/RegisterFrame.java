@@ -8,6 +8,8 @@ package tcg_osom;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,24 +18,17 @@ import javax.swing.JOptionPane;
  */
 
 
-public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
+public class RegisterFrame extends javax.swing.JFrame{
 // Menyiapkan paramter JDBC untuk koneksi ke datbase
-//    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-//    static final String DB_URL = "jdbc:mysql://localhost/tcg_osom";
-//    static final String USER = "root";
-//    static final String PASS = "";
-
-    // Menyiapkan objek yang diperlukan untuk mengelola database
-    static Connection conn;
-    static Statement stmt;
-    static ResultSet rs;
+    CrudImplement impl = new CrudImplement();
+    Account acc;
+   
     public Login login = new Login();
     /**
      * Creates new form RegisterFrame
      */
     public RegisterFrame() {
         initComponents();
-        
         Dimension layar = Toolkit.getDefaultToolkit().getScreenSize();
 //        this.setSize(layar.width,layar.height);       
         int kiri = (layar.width-this.getSize().width)/2;       
@@ -41,6 +36,28 @@ public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
         setLocation(kiri,atas);
     }
 
+    public boolean checkUsername(String username)
+    {
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkUser = false;
+        String query = "SELECT * FROM account WHERE username =?";
+        
+        try {
+            ps = DBConnection.config().prepareStatement(query);
+            ps.setString(1, username);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                checkUser = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return checkUser;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,8 +75,8 @@ public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
         txtPassword = new javax.swing.JPasswordField();
         txtMail = new javax.swing.JTextField();
         txtNickname = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -124,9 +141,6 @@ public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
         txtNickname.setBorder(null);
         getContentPane().add(txtNickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 310, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Register.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
@@ -143,32 +157,48 @@ public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
         });
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 0, 45, 45));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Register.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
-        try{
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
             String username = txtUsername.getText();
-            String password = txtPassword.getText();
+            String password = String.valueOf(txtPassword.getPassword());
             String mail = txtMail.getText();
             String nick = txtNickname.getText();
             
-            String sql = "INSERT INTO account (username, password, email, nickname) VALUE('%s','%s','%s','%s')";
-            sql = String.format(sql, username, password, mail, nick);
+            if(username.equals("")){
+                JOptionPane.showMessageDialog(null, "Username tidak boleh kosong");
+            }
+            else if(password.equals("")){
+                JOptionPane.showMessageDialog(null, "Password tidak boleh kosong");
+            }
+            else if(mail.equals("")){
+                JOptionPane.showMessageDialog(null, "Email tidak boleh kosong");
+            }
+            else if(password.equals("")){
+                JOptionPane.showMessageDialog(null, "Password tidak boleh kosong");
+            }
+            else if(checkUsername(username)){
+                JOptionPane.showMessageDialog(null, "This Username Already Exist");
+            }
             
-            stmt.execute(sql);
-            stmt.close();
-            conn.close();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        JOptionPane.showMessageDialog(null, "New account has been created");
+            else {
+                acc = new Account(username, password, mail, nick);
+                try {
+                    impl.add(acc);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegisterFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            JOptionPane.showMessageDialog(null, "New account has been created");
+            this.setVisible(false);
+            login.setVisible(true);
+            }
         
-        this.setVisible(false);
-        login.setVisible(true);
+        
+        
         
     }//GEN-LAST:event_btnRegisActionPerformed
 
@@ -177,11 +207,11 @@ public class RegisterFrame extends javax.swing.JFrame implements DBConnection{
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
-        this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // TODO add your handling code here:
+       System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

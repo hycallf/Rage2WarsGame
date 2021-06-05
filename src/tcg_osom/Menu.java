@@ -35,34 +35,31 @@ public String user;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPlay = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        Menu = new javax.swing.JPanel();
         btnDeck = new javax.swing.JButton();
         btnGuide = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        TopPanel = new javax.swing.JPanel();
+        imgProfile = new javax.swing.JLabel();
+        txtNick1 = new javax.swing.JLabel();
+        txtLv = new javax.swing.JLabel();
+        txtLv1 = new javax.swing.JLabel();
+        txtNick = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        txtNick2 = new javax.swing.JLabel();
+        txtNick3 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        Main = new javax.swing.JPanel();
+        btnPlay = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png"))); // NOI18N
-        btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPlayMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPlayMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPlayMouseExited(evt);
-            }
-        });
-        getContentPane().add(btnPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 210, 140));
-
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 90));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Menu.setBackground(new java.awt.Color(51, 51, 51));
+        Menu.setPreferredSize(new java.awt.Dimension(1024, 90));
+        Menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDeck.setBackground(new java.awt.Color(51, 51, 51));
         btnDeck.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -83,7 +80,7 @@ public String user;
                 btnDeckActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDeck, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
+        Menu.add(btnDeck, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
 
         btnGuide.setBackground(new java.awt.Color(51, 51, 51));
         btnGuide.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -104,7 +101,7 @@ public String user;
                 btnGuideActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 150, 40));
+        Menu.add(btnGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 150, 40));
 
         btnAbout.setBackground(new java.awt.Color(51, 51, 51));
         btnAbout.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -122,7 +119,7 @@ public String user;
                 btnAboutActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 150, 40));
+        Menu.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 150, 40));
 
         btnExit.setBackground(new java.awt.Color(51, 51, 51));
         btnExit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -135,13 +132,75 @@ public String user;
                 btnExitMouseClicked(evt);
             }
         });
-        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 150, 40));
+        Menu.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 150, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
+
+        TopPanel.setBackground(new java.awt.Color(51, 51, 51));
+        TopPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        imgProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColGrid/Grid1.png"))); // NOI18N
+        TopPanel.add(imgProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
+
+        txtNick1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtNick1.setForeground(new java.awt.Color(255, 255, 255));
+        txtNick1.setText("Nickname");
+        TopPanel.add(txtNick1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, -1));
+
+        txtLv.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtLv.setForeground(new java.awt.Color(255, 255, 255));
+        txtLv.setText("0/100");
+        TopPanel.add(txtLv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 65, 140, -1));
+
+        txtLv1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtLv1.setForeground(new java.awt.Color(255, 255, 255));
+        txtLv1.setText("Level 1");
+        TopPanel.add(txtLv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 90, -1));
+
+        txtNick.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtNick.setForeground(new java.awt.Color(255, 255, 255));
+        txtNick.setText("Nickname");
+        TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 90, -1));
+        TopPanel.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+
+        txtNick2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtNick2.setForeground(new java.awt.Color(255, 255, 255));
+        txtNick2.setText("img");
+        TopPanel.add(txtNick2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 20, 20));
+
+        txtNick3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtNick3.setForeground(new java.awt.Color(255, 255, 255));
+        txtNick3.setText("Nickname");
+        TopPanel.add(txtNick3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 90, -1));
+
+        getContentPane().add(TopPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 90));
+
+        Main.setLayout(null);
+
+        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png"))); // NOI18N
+        btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPlayMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlayMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPlayMouseExited(evt);
+            }
+        });
+        Main.add(btnPlay);
+        btnPlay.setBounds(410, 780, 200, 100);
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1024, 760));
+        Main.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1030, 772);
+
+        jLayeredPane1.add(Main);
+        Main.setBounds(0, 40, 1030, 600);
+
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,13 +300,24 @@ public String user;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Main;
+    private javax.swing.JPanel Menu;
+    private javax.swing.JPanel TopPanel;
     private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnDeck;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGuide;
     private javax.swing.JLabel btnPlay;
+    private javax.swing.JLabel imgProfile;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel txtLv;
+    private javax.swing.JLabel txtLv1;
+    private javax.swing.JLabel txtNick;
+    private javax.swing.JLabel txtNick1;
+    private javax.swing.JLabel txtNick2;
+    private javax.swing.JLabel txtNick3;
     // End of variables declaration//GEN-END:variables
 
 }
