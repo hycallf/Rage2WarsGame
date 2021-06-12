@@ -60,12 +60,85 @@ private final card[] Card = new card[21];
         
         
     }
-
     private int getRandomIndex() {
-        return new Random().nextInt(20 - 0);
+        int a = 0;
+        Random rand = new Random();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        while (list.size() < 21) { // how many numbers u need - it will 6
+        a = rand.nextInt(21); // this will give numbers between 1 and 50.
+
+        if (!list.contains(a)) {
+            list.add(a);
+        }
         
     }
-    
+        return a;
+    }
+    private int getRandomIndex1() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int output = 0;
+        for(int i = 0; i<4; i++){
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for(int i = 0; i<4; i++){
+            output = list.get(i);
+        }
+        return output;
+        
+    }
+    private int getRandomIndex2() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int output = 0;
+        for(int i = 4; i < 8; i++){
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for(int i = 0; i<1; i++){
+            output = list.get(i);
+        }
+        return output;
+        
+    }
+    private int getRandomIndex3() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int output = 0;
+        for(int i = 8; i<12; i++){
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for(int i = 0; i<1; i++){
+            output = list.get(i);
+        }
+        return output;
+        
+    }
+    private int getRandomIndex4() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int output = 0;
+        for(int i = 12; i<16; i++){
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for(int i = 0; i<1; i++){
+            output = list.get(i);
+        }
+        return output;
+        
+    }
+    private int getRandomIndex5() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int output = 0;
+        for(int i = 16; i<21; i++){
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for(int i = 0; i<1; i++){
+            output = list.get(i);
+        }
+        return output;
+        
+    }
     private void setAllLabel() {
         p1_deck_label.setText("Deck : x" + P1_deck);
         p1_graveyard_label.setText("Graveyard : x" + P1_graveyard);
@@ -80,11 +153,11 @@ private final card[] Card = new card[21];
     }
 
     private void getFirstIndexes() {
-        Indexes[0] = getRandomIndex();
-        Indexes[1] = getRandomIndex();
-        Indexes[2] = getRandomIndex();
-        Indexes[3] = getRandomIndex();
-        Indexes[4] = getRandomIndex();
+        Indexes[0] = getRandomIndex1();
+        Indexes[1] = getRandomIndex2();
+        Indexes[2] = getRandomIndex3();
+        Indexes[3] = getRandomIndex4();
+        Indexes[4] = getRandomIndex5();
     }
 
     private void setImageDeck() {
@@ -117,10 +190,27 @@ private final card[] Card = new card[21];
     private void deckOnClick(int index) {
         
         P1 = Card[Indexes[index]];
-        Cpu = Card[getRandomIndex()];
+        
+        if(getRandomIndex() != getRandomIndex()){
+            Cpu = Card[getRandomIndex()];
+            highlight_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardHighlight/" + Cpu.getHighlight())));
+        }
+        
         highlight_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardHighlight/" + P1.getHighlight())));
-        highlight_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/CardHighlight/" + Cpu.getHighlight())));
-        Indexes[index] = getRandomIndex();
+        
+        if(index == 0){
+            Indexes[index] = getRandomIndex1();
+        } else if(index == 1){
+            Indexes[index] = getRandomIndex2();
+        } else if(index == 2){
+            Indexes[index] = getRandomIndex3();
+        } else if(index == 3){
+            Indexes[index] = getRandomIndex4();
+        } else if(index == 4){
+            Indexes[index] = getRandomIndex5();
+        }
+      
+        
         setImageDeck();
         battle();
         setAllLabel();

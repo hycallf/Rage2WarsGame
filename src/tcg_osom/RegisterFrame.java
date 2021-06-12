@@ -44,7 +44,7 @@ public class RegisterFrame extends javax.swing.JFrame{
         String query = "SELECT * FROM account WHERE username =?";
         
         try {
-            ps = DBConnection.config().prepareStatement(query);
+            ps = Database.config().prepareStatement(query);
             ps.setString(1, username);
             
             rs = ps.executeQuery();
@@ -178,15 +178,19 @@ public class RegisterFrame extends javax.swing.JFrame{
             else if(mail.equals("")){
                 JOptionPane.showMessageDialog(null, "Email tidak boleh kosong");
             }
-            else if(password.equals("")){
-                JOptionPane.showMessageDialog(null, "Password tidak boleh kosong");
+            else if(nick.equals("")){
+                JOptionPane.showMessageDialog(null, "Nickname tidak boleh kosong");
             }
             else if(checkUsername(username)){
                 JOptionPane.showMessageDialog(null, "This Username Already Exist");
             }
             
             else {
-                acc = new Account(username, password, mail, nick);
+                acc = new Account();
+                acc.setUsername(username);
+                acc.setPassword(password);
+                acc.setEmail(mail);
+                acc.setNickname(nick);
                 try {
                     impl.add(acc);
                 } catch (SQLException ex) {

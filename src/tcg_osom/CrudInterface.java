@@ -6,6 +6,7 @@
 package tcg_osom;
 
 import java.sql.*;
+import java.util.*;
 /**
  *
  * @author KuroNeko
@@ -14,6 +15,10 @@ public interface CrudInterface {
     void add(Account acc)
             throws SQLException;
     void update(Account acc)
+            throws SQLException;
+    String login(String user, String pass) 
+            throws SQLException;
+    Account getUser(String user) 
             throws SQLException;
     
 }

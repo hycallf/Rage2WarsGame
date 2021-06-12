@@ -6,24 +6,58 @@
 package tcg_osom;
 
 import java.awt.Color;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author KuroNeko
  */
 public class Menu extends javax.swing.JFrame {
-public String user;
+
+    String account_id;
+    int level, gold, gems, exp;
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form Menu
      */
+    
     public Menu() {
+        
         initComponents();
         setLocationRelativeTo(null);
-        
+        logged();
     }
-    Menu(String user){
-        this.user = user;
-        
+    
+    private void logged(){
+        account_id = tcg_osom.Database.getUserId();
+        txtNick.setText(tcg_osom.Database.getNickname());
+        conn = Database.config();
+        String query = "select * from account where account_id = ?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, account_id);
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                level = rs.getInt("level");
+                txtLv.setText(String.valueOf("level "+level));
+                
+                exp = rs.getInt("exp");
+                ProgresExp.setValue(exp);
+                
+                gold = rs.getInt("gold");
+                txtGold.setText(String.valueOf(gold));
+                
+                gems = rs.getInt("gems");
+                txtGem.setText(String.valueOf(gems));
+                        
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -42,13 +76,13 @@ public String user;
         btnExit = new javax.swing.JButton();
         TopPanel = new javax.swing.JPanel();
         imgProfile = new javax.swing.JLabel();
-        txtNick1 = new javax.swing.JLabel();
+        txtGem = new javax.swing.JLabel();
+        txtExp = new javax.swing.JLabel();
         txtLv = new javax.swing.JLabel();
-        txtLv1 = new javax.swing.JLabel();
         txtNick = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        ProgresExp = new javax.swing.JProgressBar();
         txtNick2 = new javax.swing.JLabel();
-        txtNick3 = new javax.swing.JLabel();
+        txtGold = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         Main = new javax.swing.JPanel();
         btnPlay = new javax.swing.JLabel();
@@ -142,36 +176,36 @@ public String user;
         imgProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColGrid/Grid1.png"))); // NOI18N
         TopPanel.add(imgProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
 
-        txtNick1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        txtNick1.setForeground(new java.awt.Color(255, 255, 255));
-        txtNick1.setText("Nickname");
-        TopPanel.add(txtNick1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 90, -1));
+        txtGem.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtGem.setForeground(new java.awt.Color(255, 255, 255));
+        txtGem.setText("Gems");
+        TopPanel.add(txtGem, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 90, -1));
 
-        txtLv.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtExp.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtExp.setForeground(new java.awt.Color(255, 255, 255));
+        txtExp.setText("0/100");
+        TopPanel.add(txtExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 65, 140, -1));
+
+        txtLv.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         txtLv.setForeground(new java.awt.Color(255, 255, 255));
-        txtLv.setText("0/100");
-        TopPanel.add(txtLv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 65, 140, -1));
-
-        txtLv1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        txtLv1.setForeground(new java.awt.Color(255, 255, 255));
-        txtLv1.setText("Level 1");
-        TopPanel.add(txtLv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 90, -1));
+        txtLv.setText("Level 1");
+        TopPanel.add(txtLv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 90, -1));
 
         txtNick.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         txtNick.setForeground(new java.awt.Color(255, 255, 255));
         txtNick.setText("Nickname");
         TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 90, -1));
-        TopPanel.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        TopPanel.add(ProgresExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         txtNick2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         txtNick2.setForeground(new java.awt.Color(255, 255, 255));
         txtNick2.setText("img");
         TopPanel.add(txtNick2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 20, 20));
 
-        txtNick3.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        txtNick3.setForeground(new java.awt.Color(255, 255, 255));
-        txtNick3.setText("Nickname");
-        TopPanel.add(txtNick3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 90, -1));
+        txtGold.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtGold.setForeground(new java.awt.Color(255, 255, 255));
+        txtGold.setText("Gold");
+        TopPanel.add(txtGold, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 90, -1));
 
         getContentPane().add(TopPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 90));
 
@@ -241,11 +275,11 @@ public String user;
     }//GEN-LAST:event_btnGuideActionPerformed
 
     private void btnGuideMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseEntered
-        btnDeck.setBackground(new java.awt.Color(15, 15, 15));
+        btnGuide.setBackground(new java.awt.Color(15, 15, 15));
     }//GEN-LAST:event_btnGuideMouseEntered
 
     private void btnGuideMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseExited
-       btnDeck.setBackground(new java.awt.Color(51, 51, 51));
+       btnGuide.setBackground(new java.awt.Color(51, 51, 51));
     }//GEN-LAST:event_btnGuideMouseExited
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
@@ -261,7 +295,7 @@ public String user;
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         // TODO add your handling code here:
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
     /**
@@ -302,6 +336,7 @@ public String user;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Menu;
+    private javax.swing.JProgressBar ProgresExp;
     private javax.swing.JPanel TopPanel;
     private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnDeck;
@@ -311,13 +346,12 @@ public String user;
     private javax.swing.JLabel imgProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel txtExp;
+    private javax.swing.JLabel txtGem;
+    private javax.swing.JLabel txtGold;
     private javax.swing.JLabel txtLv;
-    private javax.swing.JLabel txtLv1;
     private javax.swing.JLabel txtNick;
-    private javax.swing.JLabel txtNick1;
     private javax.swing.JLabel txtNick2;
-    private javax.swing.JLabel txtNick3;
     // End of variables declaration//GEN-END:variables
 
 }

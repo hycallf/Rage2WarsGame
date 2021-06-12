@@ -10,16 +10,58 @@ package tcg_osom;
  * @author KuroNeko
  */
 public class Account {
+    private String userId;
     private String username;
     private String password;
     private String email;
     private String nickname;
+    private int gold, exp, lvl, gems;
 
-    public Account(String username, String password, String email, String nickname) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.nickname = nickname;
+//    public Account(String username, String password, String email, String nickname) {
+//        this.username = username;
+//        this.password = password;
+//        this.email = email;
+//        this.nickname = nickname;
+//    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    public int getGems() {
+        return gems;
+    }
+
+    public void setGems(int gems) {
+        this.gems = gems;
     }
 
     public String getUsername() {
