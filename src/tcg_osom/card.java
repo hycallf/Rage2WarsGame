@@ -12,14 +12,15 @@ package tcg_osom;
 public class card {
     
     private String image, name, type, highlight;
-    private int damage;
+    private int attack, defence, damage;
 
-    public card(String image,String highlight, String name, String type, int damage) {
+    public card(String image,String highlight, String name, String type, int attack, int defence) {
     this.image = image;
     this.highlight = highlight;
     this.name = name;
     this.type = type;
-    this.damage = damage;
+    this.attack = attack;
+    this.defence = defence;
     }
 
     public String getImage() {
@@ -46,14 +47,6 @@ public class card {
         this.type = type;
     }
 
-    public int getDamage() {
-        return this.damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
     public String getHighlight() {
         return this.highlight;
     }
@@ -61,4 +54,30 @@ public class card {
     public void setHighlight(String highlight) {
         this.highlight = highlight;
     }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+    
+    
 }

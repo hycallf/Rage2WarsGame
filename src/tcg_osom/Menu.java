@@ -6,8 +6,10 @@
 package tcg_osom;
 
 import java.awt.Color;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    
     /**
      * Creates new form Menu
      */
@@ -29,6 +32,7 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         logged();
+        
     }
     
     private void logged(){
@@ -70,9 +74,11 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         Menu = new javax.swing.JPanel();
-        btnDeck = new javax.swing.JButton();
+        btnMarket = new javax.swing.JButton();
         btnGuide = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
+        btnAchieve = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         TopPanel = new javax.swing.JPanel();
         imgProfile = new javax.swing.JLabel();
@@ -81,12 +87,17 @@ public class Menu extends javax.swing.JFrame {
         txtLv = new javax.swing.JLabel();
         txtNick = new javax.swing.JLabel();
         ProgresExp = new javax.swing.JProgressBar();
-        txtNick2 = new javax.swing.JLabel();
         txtGold = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         Main = new javax.swing.JPanel();
+        btnPlay1 = new javax.swing.JLabel();
         btnPlay = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Achieve = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,26 +106,26 @@ public class Menu extends javax.swing.JFrame {
         Menu.setPreferredSize(new java.awt.Dimension(1024, 90));
         Menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDeck.setBackground(new java.awt.Color(51, 51, 51));
-        btnDeck.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnDeck.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeck.setText("My Deck");
-        btnDeck.setBorder(null);
-        btnDeck.setBorderPainted(false);
-        btnDeck.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMarket.setBackground(new java.awt.Color(51, 51, 51));
+        btnMarket.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnMarket.setForeground(new java.awt.Color(255, 255, 255));
+        btnMarket.setText("Market");
+        btnMarket.setBorder(null);
+        btnMarket.setBorderPainted(false);
+        btnMarket.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnDeckMouseEntered(evt);
+                btnMarketMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnDeckMouseExited(evt);
+                btnMarketMouseExited(evt);
             }
         });
-        btnDeck.addActionListener(new java.awt.event.ActionListener() {
+        btnMarket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeckActionPerformed(evt);
+                btnMarketActionPerformed(evt);
             }
         });
-        Menu.add(btnDeck, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
+        Menu.add(btnMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 40));
 
         btnGuide.setBackground(new java.awt.Color(51, 51, 51));
         btnGuide.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -153,7 +164,41 @@ public class Menu extends javax.swing.JFrame {
                 btnAboutActionPerformed(evt);
             }
         });
-        Menu.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 150, 40));
+        Menu.add(btnAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 150, 40));
+
+        btnHistory.setBackground(new java.awt.Color(51, 51, 51));
+        btnHistory.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistory.setText("History");
+        btnHistory.setBorder(null);
+        btnHistory.setBorderPainted(false);
+        btnHistory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistoryMouseClicked(evt);
+            }
+        });
+        Menu.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 150, 40));
+
+        btnAchieve.setBackground(new java.awt.Color(51, 51, 51));
+        btnAchieve.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnAchieve.setForeground(new java.awt.Color(255, 255, 255));
+        btnAchieve.setText("Achievement");
+        btnAchieve.setBorder(null);
+        btnAchieve.setBorderPainted(false);
+        btnAchieve.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAchieveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAchieveMouseExited(evt);
+            }
+        });
+        btnAchieve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAchieveActionPerformed(evt);
+            }
+        });
+        Menu.add(btnAchieve, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
 
         btnExit.setBackground(new java.awt.Color(51, 51, 51));
         btnExit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -166,7 +211,7 @@ public class Menu extends javax.swing.JFrame {
                 btnExitMouseClicked(evt);
             }
         });
-        Menu.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 150, 40));
+        Menu.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 150, 40));
 
         getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
 
@@ -174,99 +219,108 @@ public class Menu extends javax.swing.JFrame {
         TopPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColGrid/Grid1.png"))); // NOI18N
-        TopPanel.add(imgProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
+        TopPanel.add(imgProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 80));
 
-        txtGem.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtGem.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtGem.setForeground(new java.awt.Color(255, 255, 255));
         txtGem.setText("Gems");
-        TopPanel.add(txtGem, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, 90, -1));
+        TopPanel.add(txtGem, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 140, 30));
 
-        txtExp.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtExp.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtExp.setForeground(new java.awt.Color(255, 255, 255));
         txtExp.setText("0/100");
-        TopPanel.add(txtExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 65, 140, -1));
+        TopPanel.add(txtExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 140, -1));
 
-        txtLv.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtLv.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtLv.setForeground(new java.awt.Color(255, 255, 255));
         txtLv.setText("Level 1");
-        TopPanel.add(txtLv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 90, -1));
+        TopPanel.add(txtLv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 90, -1));
 
-        txtNick.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtNick.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtNick.setForeground(new java.awt.Color(255, 255, 255));
         txtNick.setText("Nickname");
-        TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 90, -1));
-        TopPanel.add(ProgresExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, -1));
+        TopPanel.add(ProgresExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 20));
 
-        txtNick2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        txtNick2.setForeground(new java.awt.Color(255, 255, 255));
-        txtNick2.setText("img");
-        TopPanel.add(txtNick2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 20, 20));
-
-        txtGold.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        txtGold.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         txtGold.setForeground(new java.awt.Color(255, 255, 255));
         txtGold.setText("Gold");
-        TopPanel.add(txtGold, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 90, -1));
+        TopPanel.add(txtGold, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 140, 30));
 
-        getContentPane().add(TopPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 90));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/Gold.png"))); // NOI18N
+        TopPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/Gem.png"))); // NOI18N
+        TopPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+
+        btnLogout.setBackground(new java.awt.Color(0, 153, 153));
+        btnLogout.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Logout");
+        btnLogout.setBorder(null);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        TopPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 90, 40));
+
+        getContentPane().add(TopPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 120));
 
         Main.setLayout(null);
 
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png"))); // NOI18N
+        btnPlay1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnPlay1.setForeground(new java.awt.Color(255, 255, 255));
+        btnPlay1.setText("Customize");
+        Main.add(btnPlay1);
+        btnPlay1.setBounds(430, 510, 130, 60);
+
+        btnPlay.setFont(new java.awt.Font("Hack", 1, 36)); // NOI18N
+        btnPlay.setForeground(new java.awt.Color(255, 255, 255));
+        btnPlay.setText("Play!");
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPlayMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnPlayMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnPlayMouseExited(evt);
-            }
         });
         Main.add(btnPlay);
-        btnPlay.setBounds(410, 780, 200, 100);
+        btnPlay.setBounds(440, 460, 110, 60);
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Menu.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/main_menu.png"))); // NOI18N
         Main.add(jLabel1);
         jLabel1.setBounds(0, 0, 1030, 772);
 
         jLayeredPane1.add(Main);
-        Main.setBounds(0, 40, 1030, 600);
+        Main.setBounds(0, 40, 1040, 600);
+
+        Achieve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/archieve.png"))); // NOI18N
+        Achieve.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 520));
+
+        jLayeredPane1.add(Achieve);
+        Achieve.setBounds(0, 120, 1020, 520);
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseEntered
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonHover.png")));
-    }//GEN-LAST:event_btnPlayMouseEntered
-
-    private void btnPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseExited
-        btnPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ButtonNormal.png")));
-    }//GEN-LAST:event_btnPlayMouseExited
-
-    private void btnPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseClicked
-        this.dispose();
-        GameFrame game = new GameFrame();
-        game.setVisible(true);
-    }//GEN-LAST:event_btnPlayMouseClicked
-
-    private void btnDeckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeckActionPerformed
+    private void btnMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketActionPerformed
         this.dispose();
         DeckCard col = new DeckCard();
         col.setVisible(true);
         
-    }//GEN-LAST:event_btnDeckActionPerformed
+    }//GEN-LAST:event_btnMarketActionPerformed
 
-    private void btnDeckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeckMouseEntered
-        btnDeck.setBackground(new java.awt.Color(15, 15, 15));
-    }//GEN-LAST:event_btnDeckMouseEntered
+    private void btnMarketMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketMouseEntered
+        btnMarket.setBackground(new java.awt.Color(15, 15, 15));
+    }//GEN-LAST:event_btnMarketMouseEntered
 
-    private void btnDeckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeckMouseExited
-        btnDeck.setBackground(new java.awt.Color(51, 51, 51));
-    }//GEN-LAST:event_btnDeckMouseExited
+    private void btnMarketMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketMouseExited
+        btnMarket.setBackground(new java.awt.Color(51, 51, 51));
+    }//GEN-LAST:event_btnMarketMouseExited
 
     private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
         this.dispose();
@@ -293,10 +347,43 @@ public class Menu extends javax.swing.JFrame {
         abott.setVisible(true);
     }//GEN-LAST:event_btnAboutMouseClicked
 
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+    private void btnHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseClicked
         // TODO add your handling code here:
         System.exit(0);
+    }//GEN-LAST:event_btnHistoryMouseClicked
+
+    private void btnAchieveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAchieveMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAchieveMouseEntered
+
+    private void btnAchieveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAchieveMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAchieveMouseExited
+
+    private void btnAchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAchieveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAchieveActionPerformed
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+         File data = new File(System.getProperty("user.dir") + "/session.xml");
+        if (data.exists()) {
+            data.delete();
+            Login lF = new Login();
+            lF.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Berhasil Keluar Aplikasi, \n\nSilahkan Masuk Kembali!!");
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseClicked
+        GameFrame gf = new GameFrame();
+        gf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnPlayMouseClicked
 
     /**
      * @param args the command line arguments
@@ -334,24 +421,31 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Achieve;
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Menu;
     private javax.swing.JProgressBar ProgresExp;
     private javax.swing.JPanel TopPanel;
     private javax.swing.JButton btnAbout;
-    private javax.swing.JButton btnDeck;
+    private javax.swing.JButton btnAchieve;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGuide;
+    private javax.swing.JButton btnHistory;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnMarket;
     private javax.swing.JLabel btnPlay;
+    private javax.swing.JLabel btnPlay1;
     private javax.swing.JLabel imgProfile;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLabel txtExp;
     private javax.swing.JLabel txtGem;
     private javax.swing.JLabel txtGold;
     private javax.swing.JLabel txtLv;
     private javax.swing.JLabel txtNick;
-    private javax.swing.JLabel txtNick2;
     // End of variables declaration//GEN-END:variables
 
 }
