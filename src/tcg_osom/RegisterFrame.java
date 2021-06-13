@@ -67,8 +67,7 @@ public class RegisterFrame extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbSuccess = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        linkLogin = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         btnRegis = new javax.swing.JButton();
         txtUsername = new javax.swing.JTextField();
@@ -83,28 +82,24 @@ public class RegisterFrame extends javax.swing.JFrame{
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbSuccess.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lbSuccess.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(lbSuccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, 210, 20));
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel3.setText("click here to Login");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        linkLogin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        linkLogin.setForeground(new java.awt.Color(51, 102, 255));
+        linkLogin.setText("click here to Login");
+        linkLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                linkLoginMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
+        getContentPane().add(linkLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, -1, -1));
 
         lb2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lb2.setForeground(new java.awt.Color(255, 255, 255));
         lb2.setText("Already have an account, ");
         getContentPane().add(lb2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, -1));
 
-        btnRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnRegis.png"))); // NOI18N
+        btnRegis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnRegis.png"))); // NOI18N
         btnRegis.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        btnRegis.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnRegis-Hover.png"))); // NOI18N
+        btnRegis.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnRegis-Hover.png"))); // NOI18N
         btnRegis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisActionPerformed(evt);
@@ -141,10 +136,10 @@ public class RegisterFrame extends javax.swing.JFrame{
         txtNickname.setBorder(null);
         getContentPane().add(txtNickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 310, 40));
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
-        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
@@ -157,7 +152,7 @@ public class RegisterFrame extends javax.swing.JFrame{
         });
         getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 0, 45, 45));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Register.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/Register.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -218,10 +213,10 @@ public class RegisterFrame extends javax.swing.JFrame{
        System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void linkLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkLoginMouseClicked
         this.setVisible(false);
         login.setVisible(true);
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_linkLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,9 +257,8 @@ public class RegisterFrame extends javax.swing.JFrame{
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnRegis;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lb2;
-    private javax.swing.JLabel lbSuccess;
+    private javax.swing.JLabel linkLogin;
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtNickname;
     private javax.swing.JPasswordField txtPassword;

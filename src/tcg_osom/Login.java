@@ -39,7 +39,7 @@ public class Login extends javax.swing.JFrame{
     private void initComponents() {
 
         btnResetpw = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        linkRegis = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         lbSuccess = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
@@ -47,8 +47,6 @@ public class Login extends javax.swing.JFrame{
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        lb3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -64,15 +62,15 @@ public class Login extends javax.swing.JFrame{
         });
         getContentPane().add(btnResetpw, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, 30));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel3.setText("click here to Register");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        linkRegis.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        linkRegis.setForeground(new java.awt.Color(51, 102, 255));
+        linkRegis.setText("click here to Register");
+        linkRegis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                linkRegisMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, 30));
+        getContentPane().add(linkRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, -1, 30));
 
         lb2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         lb2.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,10 +81,10 @@ public class Login extends javax.swing.JFrame{
         lbSuccess.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lbSuccess, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 210, 20));
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
-        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
@@ -111,9 +109,9 @@ public class Login extends javax.swing.JFrame{
         txtPassword.setBorder(null);
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 310, 40));
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLogin.png"))); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnLogin.png"))); // NOI18N
         btnLogin.setBorder(null);
-        btnLogin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnLogin-Hover.png"))); // NOI18N
+        btnLogin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnLogin-Hover.png"))); // NOI18N
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -121,23 +119,8 @@ public class Login extends javax.swing.JFrame{
         });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Login.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/Login.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, -1));
-
-        lb3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        lb3.setForeground(new java.awt.Color(255, 255, 255));
-        lb3.setText("Don't Have an account?");
-        getContentPane().add(lb3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, 30));
-
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel4.setText("click here to Register");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,14 +182,10 @@ public class Login extends javax.swing.JFrame{
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void linkRegisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkRegisMouseClicked
         new RegisterFrame().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_linkRegisMouseClicked
 
     private void btnResetpwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetpwMouseClicked
         // TODO add your handling code here:
@@ -252,11 +231,9 @@ public class Login extends javax.swing.JFrame{
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel btnResetpw;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lb2;
-    private javax.swing.JLabel lb3;
     private javax.swing.JLabel lbSuccess;
+    private javax.swing.JLabel linkRegis;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
