@@ -51,6 +51,8 @@ public class Menu extends javax.swing.JFrame {
                 
                 exp = rs.getInt("exp");
                 ProgresExp.setValue(exp);
+                String maks = String.valueOf(ProgresExp.getMaximum());
+                txtExp.setText(exp+" / "+maks);
                 
                 gold = rs.getInt("gold");
                 txtGold.setText(String.valueOf(gold));
@@ -78,7 +80,7 @@ public class Menu extends javax.swing.JFrame {
         btnGuide = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
-        btnAchieve = new javax.swing.JButton();
+        btnArchieve = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         TopPanel = new javax.swing.JPanel();
         imgProfile = new javax.swing.JLabel();
@@ -109,6 +111,7 @@ public class Menu extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Menu.setBackground(new java.awt.Color(51, 51, 51));
@@ -188,26 +191,26 @@ public class Menu extends javax.swing.JFrame {
         });
         Menu.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 150, 40));
 
-        btnAchieve.setBackground(new java.awt.Color(51, 51, 51));
-        btnAchieve.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAchieve.setForeground(new java.awt.Color(255, 255, 255));
-        btnAchieve.setText("Achievement");
-        btnAchieve.setBorder(null);
-        btnAchieve.setBorderPainted(false);
-        btnAchieve.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnArchieve.setBackground(new java.awt.Color(51, 51, 51));
+        btnArchieve.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnArchieve.setForeground(new java.awt.Color(255, 255, 255));
+        btnArchieve.setText("Archieve");
+        btnArchieve.setBorder(null);
+        btnArchieve.setBorderPainted(false);
+        btnArchieve.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnAchieveMouseEntered(evt);
+                btnArchieveMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnAchieveMouseExited(evt);
+                btnArchieveMouseExited(evt);
             }
         });
-        btnAchieve.addActionListener(new java.awt.event.ActionListener() {
+        btnArchieve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAchieveActionPerformed(evt);
+                btnArchieveActionPerformed(evt);
             }
         });
-        Menu.add(btnAchieve, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
+        Menu.add(btnArchieve, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 150, 40));
 
         btnExit.setBackground(new java.awt.Color(51, 51, 51));
         btnExit.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -434,18 +437,18 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnHistoryMouseClicked
 
-    private void btnAchieveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAchieveMouseEntered
+    private void btnArchieveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchieveMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAchieveMouseEntered
+    }//GEN-LAST:event_btnArchieveMouseEntered
 
-    private void btnAchieveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAchieveMouseExited
+    private void btnArchieveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchieveMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAchieveMouseExited
+    }//GEN-LAST:event_btnArchieveMouseExited
 
-    private void btnAchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAchieveActionPerformed
+    private void btnArchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchieveActionPerformed
         Achieve.setVisible(true);
         Main.setVisible(false);
-    }//GEN-LAST:event_btnAchieveActionPerformed
+    }//GEN-LAST:event_btnArchieveActionPerformed
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         System.exit(0);
@@ -538,7 +541,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel TopPanel;
     private javax.swing.JPanel Tutorial;
     private javax.swing.JButton btnAbout;
-    private javax.swing.JButton btnAchieve;
+    private javax.swing.JButton btnArchieve;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnClose1;
     private javax.swing.JLabel btnCustom;
