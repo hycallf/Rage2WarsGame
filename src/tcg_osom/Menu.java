@@ -104,7 +104,6 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Tutorial = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         Achieve = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         About = new javax.swing.JPanel();
@@ -223,6 +222,11 @@ public class Menu extends javax.swing.JFrame {
                 btnExitMouseClicked(evt);
             }
         });
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
         Menu.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 150, 40));
 
         getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
@@ -230,7 +234,7 @@ public class Menu extends javax.swing.JFrame {
         TopPanel.setBackground(new java.awt.Color(51, 51, 51));
         TopPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ColGrid/Grid1.png"))); // NOI18N
+        imgProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/Handcard/HC005.png"))); // NOI18N
         TopPanel.add(imgProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 80));
 
         txtGem.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -319,10 +323,10 @@ public class Menu extends javax.swing.JFrame {
         History.add(jLabel6);
         jLabel6.setBounds(440, 90, 130, 22);
 
-        btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
         btnClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnClose1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
-        btnClose1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
         btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClose1MouseClicked(evt);
@@ -356,11 +360,6 @@ public class Menu extends javax.swing.JFrame {
         History.setBounds(0, 120, 1020, 520);
 
         Tutorial.setLayout(null);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz1.png"))); // NOI18N
-        Tutorial.add(jLabel5);
-        jLabel5.setBounds(0, 0, 1020, 640);
-
         jLayeredPane1.add(Tutorial);
         Tutorial.setBounds(0, 0, 1020, 640);
 
@@ -374,10 +373,10 @@ public class Menu extends javax.swing.JFrame {
 
         About.setLayout(null);
 
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
-        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
@@ -496,6 +495,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClose1ActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -556,7 +559,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -136,13 +136,13 @@ private final card[] Card = new card[34];
         }
         
         int goldNow = gold + rewardGold;
-        int expNow = gold + rewardExp;
+        int expNow = exp + rewardExp;
         
         String up = "update account set gold=?, exp=? where account_id=?";
         try {
             pst = conn.prepareStatement(up);
             pst.setInt(1, goldNow);
-            pst.setInt(2, exp);
+            pst.setInt(2, expNow);
             pst.setString(3, account_id);
             pst.executeUpdate();
         }
@@ -410,7 +410,7 @@ private final card[] Card = new card[34];
         hp_p1_label.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         hp_p1_label.setText("HP Player : 10000");
         MainPanel.add(hp_p1_label);
-        hp_p1_label.setBounds(120, 360, 146, 22);
+        hp_p1_label.setBounds(120, 360, 210, 22);
 
         deck_1.setBorderPainted(false);
         deck_1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -767,12 +767,14 @@ private final card[] Card = new card[34];
     }//GEN-LAST:event_deck_4MouseExited
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        btnMenu.setVisible(false);
         panelMenu.setVisible(true);
         panelMenu.setSize(300,300);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
         panelMenu.setVisible(false);
+        btnMenu.setVisible(true);
         
     }//GEN-LAST:event_btnPauseActionPerformed
 
