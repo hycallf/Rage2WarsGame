@@ -410,9 +410,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMarketMouseExited
 
     private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
-        this.dispose();
-        Tutorial1 guide = new Tutorial1();
-        guide.setVisible(true);
+        
     }//GEN-LAST:event_btnGuideActionPerformed
 
     private void btnGuideMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseEntered
@@ -428,10 +426,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        AboutUs abott = new AboutUs();
-        abott.setVisible(true);
+      
     }//GEN-LAST:event_btnAboutMouseClicked
 
     private void btnHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseClicked
