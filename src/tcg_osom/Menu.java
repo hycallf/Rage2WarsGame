@@ -93,11 +93,20 @@ public class Menu extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         Main = new javax.swing.JPanel();
-        btnPlay1 = new javax.swing.JLabel();
+        btnCustom = new javax.swing.JLabel();
         btnPlay = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        History = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        btnClose1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        Tutorial = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         Achieve = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        About = new javax.swing.JPanel();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -269,11 +278,11 @@ public class Menu extends javax.swing.JFrame {
 
         Main.setLayout(null);
 
-        btnPlay1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnPlay1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPlay1.setText("Customize");
-        Main.add(btnPlay1);
-        btnPlay1.setBounds(430, 510, 130, 60);
+        btnCustom.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnCustom.setForeground(new java.awt.Color(255, 255, 255));
+        btnCustom.setText("Customize");
+        Main.add(btnCustom);
+        btnCustom.setBounds(430, 510, 130, 60);
 
         btnPlay.setFont(new java.awt.Font("Hack", 1, 36)); // NOI18N
         btnPlay.setForeground(new java.awt.Color(255, 255, 255));
@@ -281,6 +290,12 @@ public class Menu extends javax.swing.JFrame {
         btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPlayMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPlayMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPlayMouseExited(evt);
             }
         });
         Main.add(btnPlay);
@@ -294,6 +309,58 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane1.add(Main);
         Main.setBounds(0, 40, 1040, 600);
 
+        History.setLayout(null);
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel6.setText("History Board");
+        History.add(jLabel6);
+        jLabel6.setBounds(440, 90, 130, 22);
+
+        btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClose1MouseClicked(evt);
+            }
+        });
+        btnClose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClose1ActionPerformed(evt);
+            }
+        });
+        History.add(btnClose1);
+        btnClose1.setBounds(960, 20, 50, 53);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        History.add(jScrollPane1);
+        jScrollPane1.setBounds(60, 120, 890, 402);
+
+        jLayeredPane1.add(History);
+        History.setBounds(0, 120, 1020, 520);
+
+        Tutorial.setLayout(null);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz1.png"))); // NOI18N
+        Tutorial.add(jLabel5);
+        jLabel5.setBounds(0, 0, 1020, 640);
+
+        jLayeredPane1.add(Tutorial);
+        Tutorial.setBounds(0, 0, 1020, 640);
+
         Achieve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/archieve.png"))); // NOI18N
@@ -302,15 +369,35 @@ public class Menu extends javax.swing.JFrame {
         jLayeredPane1.add(Achieve);
         Achieve.setBounds(0, 120, 1020, 520);
 
+        About.setLayout(null);
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose.png"))); // NOI18N
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnClose-Hover.png"))); // NOI18N
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+        About.add(btnClose);
+        btnClose.setBounds(960, 10, 50, 53);
+
+        jLayeredPane1.add(About);
+        About.setBounds(0, 120, 1020, 520);
+
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketActionPerformed
-        this.dispose();
-        DeckCard col = new DeckCard();
-        col.setVisible(true);
+        
         
     }//GEN-LAST:event_btnMarketActionPerformed
 
@@ -349,7 +436,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        
     }//GEN-LAST:event_btnHistoryMouseClicked
 
     private void btnAchieveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAchieveMouseEntered
@@ -361,11 +448,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAchieveMouseExited
 
     private void btnAchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAchieveActionPerformed
-        // TODO add your handling code here:
+        Achieve.setVisible(true);
+        Main.setVisible(false);
     }//GEN-LAST:event_btnAchieveActionPerformed
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -384,6 +472,31 @@ public class Menu extends javax.swing.JFrame {
         gf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPlayMouseClicked
+
+    private void btnPlayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseEntered
+        btnPlay.setForeground(Color.blue);
+    }//GEN-LAST:event_btnPlayMouseEntered
+
+    private void btnPlayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlayMouseExited
+        btnPlay.setForeground(Color.white);
+    }//GEN-LAST:event_btnPlayMouseExited
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+
+    }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        About.setVisible(false);
+        Main.setVisible(true);
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClose1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClose1MouseClicked
+
+    private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClose1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,26 +534,35 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel About;
     private javax.swing.JPanel Achieve;
+    private javax.swing.JPanel History;
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Menu;
     private javax.swing.JProgressBar ProgresExp;
     private javax.swing.JPanel TopPanel;
+    private javax.swing.JPanel Tutorial;
     private javax.swing.JButton btnAbout;
     private javax.swing.JButton btnAchieve;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnClose1;
+    private javax.swing.JLabel btnCustom;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGuide;
     private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMarket;
     private javax.swing.JLabel btnPlay;
-    private javax.swing.JLabel btnPlay1;
     private javax.swing.JLabel imgProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel txtExp;
     private javax.swing.JLabel txtGem;
     private javax.swing.JLabel txtGold;

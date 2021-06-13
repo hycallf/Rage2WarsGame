@@ -23,7 +23,7 @@ public class Database{
     private static String password;
     private static String email;
     private static String nickname;
-    private int gold, exp, lvl, gems;
+
 
 //    public Account(String username, String password, String email, String nickname) {
 //        this.username = username;
@@ -70,38 +70,6 @@ public class Database{
 
     public static void setNickname(String nickname) {
         Database.nickname = nickname;
-    }
-    
-     public int getGold() {
-        return gold;
-    }
-
-    public void setGold(int gold) {
-        this.gold = gold;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
-
-    public int getGems() {
-        return gems;
-    }
-
-    public void setGems(int gems) {
-        this.gems = gems;
     }
     
     public static Connection config(){

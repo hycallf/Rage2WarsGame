@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
+        btnResetpw = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lb2 = new javax.swing.JLabel();
         lbSuccess = new javax.swing.JLabel();
@@ -54,15 +54,15 @@ public class Login extends javax.swing.JFrame{
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel5.setText("Forget password");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnResetpw.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnResetpw.setForeground(new java.awt.Color(51, 102, 255));
+        btnResetpw.setText("Forget password");
+        btnResetpw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                btnResetpwMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, 30));
+        getContentPane().add(btnResetpw, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 102, 255));
@@ -208,9 +208,9 @@ public class Login extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void btnResetpwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetpwMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_btnResetpwMouseClicked
 
     /**
      * @param args the command line arguments
@@ -250,10 +250,10 @@ public class Login extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel btnResetpw;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;
     private javax.swing.JLabel lbSuccess;

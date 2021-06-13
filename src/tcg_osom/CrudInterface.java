@@ -16,9 +16,5 @@ public interface CrudInterface {
             throws SQLException;
     void update(Account acc)
             throws SQLException;
-    String login(String user, String pass) 
-            throws SQLException;
-    Account getUser(String user) 
-            throws SQLException;
     
 }
