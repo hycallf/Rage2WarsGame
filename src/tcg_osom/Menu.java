@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import javax.swing.table.*;
 
 /**
  *
@@ -18,10 +19,11 @@ import java.sql.*;
 public class Menu extends javax.swing.JFrame {
 
     String account_id;
-    int level, gold, gems, exp;
+    int level, gold, gems, exp, maks;
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
+    CrudImplement cli = new CrudImplement();
     
     /**
      * Creates new form Menu
@@ -32,8 +34,12 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         logged();
-        
+        levelUp();
+        tableHistory();
+        hideAll();
+        Main.setVisible(true);
     }
+    
     
     private void logged(){
         account_id = tcg_osom.Database.getUserId();
@@ -51,7 +57,7 @@ public class Menu extends javax.swing.JFrame {
                 
                 exp = rs.getInt("exp");
                 ProgresExp.setValue(exp);
-                String maks = String.valueOf(ProgresExp.getMaximum());
+                maks = level*100;
                 txtExp.setText(exp+" / "+maks);
                 
                 gold = rs.getInt("gold");
@@ -64,8 +70,71 @@ public class Menu extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
     }
 
+    private void levelUp(){
+        if(ProgresExp.getValue()>=maks){
+            level ++;
+            ProgresExp.setValue(ProgresExp.getValue()-maks);
+
+            int levelUpgold = level*20 + 100;
+            int levelUpgems = level*5;
+            
+            gold += levelUpgold;
+            gems += levelUpgems;
+            JOptionPane.showMessageDialog(null, "Congrats\n You leveled up to level "+level+"\nYou get "+levelUpgold+" gold and "+levelUpgems+" gems");
+            try{
+                cli.levelUp(level,account_id);
+                cli.setGold(gold, account_id);
+                cli.setGems(gems, account_id);
+            }
+            catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+            
+        }
+    }
+    
+    private void hideAll(){
+        Main.setVisible(false);
+        Tutorial.setVisible(false);
+        About.setVisible(false);
+        Archieve.setVisible(false);
+        History.setVisible(false);
+//        Market.setVisible(false);
+    }
+    
+    private void tableHistory(){
+        conn = Database.config();
+        String query = "select * from history where account_id = ?";
+        
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, account_id);
+            rs = pst.executeQuery();
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+            dtm.setRowCount(0);
+            String [] data = new String[8];
+            int i = 1;
+            
+            while(rs.next()) {
+            data[0] = String.valueOf(i);
+            data[1] = rs.getString("p1_card");
+            data[2] = rs.getString("cpu_card");
+            data[3] = rs.getString("p1_hp");
+            data[4] = rs.getString("cpu_hp");
+            data[5] = rs.getString("win_lose");
+            data[6] = rs.getString("play_time");
+            data[7] = rs.getString("date");
+            dtm.addRow(data);
+            i++;
+        }
+        }
+        catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +144,8 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        btnTuts = new javax.swing.ButtonGroup();
         Menu = new javax.swing.JPanel();
         btnMarket = new javax.swing.JButton();
         btnGuide = new javax.swing.JButton();
@@ -82,6 +153,8 @@ public class Menu extends javax.swing.JFrame {
         btnHistory = new javax.swing.JButton();
         btnArchieve = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        Main = new javax.swing.JPanel();
         TopPanel = new javax.swing.JPanel();
         imgProfile = new javax.swing.JLabel();
         txtGem = new javax.swing.JLabel();
@@ -93,21 +166,28 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        Main = new javax.swing.JPanel();
         btnCustom = new javax.swing.JLabel();
         btnPlay = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        Tutorial = new javax.swing.JPanel();
+        btnClose2 = new javax.swing.JButton();
+        tutsBg = new javax.swing.JLabel();
+        tuts1R1 = new javax.swing.JRadioButton();
+        tuts2R1 = new javax.swing.JRadioButton();
+        tuts3R1 = new javax.swing.JRadioButton();
+        tuts1Prev1 = new javax.swing.JLabel();
+        tuts1Nex1 = new javax.swing.JLabel();
         History = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnClose1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        Tutorial = new javax.swing.JPanel();
-        Achieve = new javax.swing.JPanel();
+        Archieve = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         About = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
+
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -123,14 +203,6 @@ public class Menu extends javax.swing.JFrame {
         btnMarket.setText("Market");
         btnMarket.setBorder(null);
         btnMarket.setBorderPainted(false);
-        btnMarket.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMarketMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMarketMouseExited(evt);
-            }
-        });
         btnMarket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMarketActionPerformed(evt);
@@ -144,14 +216,6 @@ public class Menu extends javax.swing.JFrame {
         btnGuide.setText("Guide");
         btnGuide.setBorder(null);
         btnGuide.setBorderPainted(false);
-        btnGuide.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnGuideMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnGuideMouseExited(evt);
-            }
-        });
         btnGuide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuideActionPerformed(evt);
@@ -166,8 +230,8 @@ public class Menu extends javax.swing.JFrame {
         btnAbout.setBorder(null);
         btnAbout.setBorderPainted(false);
         btnAbout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAboutMouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnGuideMouseEntered(evt);
             }
         });
         btnAbout.addActionListener(new java.awt.event.ActionListener() {
@@ -183,9 +247,9 @@ public class Menu extends javax.swing.JFrame {
         btnHistory.setText("History");
         btnHistory.setBorder(null);
         btnHistory.setBorderPainted(false);
-        btnHistory.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnHistoryMouseClicked(evt);
+        btnHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoryActionPerformed(evt);
             }
         });
         Menu.add(btnHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 150, 40));
@@ -196,14 +260,6 @@ public class Menu extends javax.swing.JFrame {
         btnArchieve.setText("Archieve");
         btnArchieve.setBorder(null);
         btnArchieve.setBorderPainted(false);
-        btnArchieve.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnArchieveMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnArchieveMouseExited(evt);
-            }
-        });
         btnArchieve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnArchieveActionPerformed(evt);
@@ -217,11 +273,6 @@ public class Menu extends javax.swing.JFrame {
         btnExit.setText("Exit");
         btnExit.setBorder(null);
         btnExit.setBorderPainted(false);
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-        });
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -229,7 +280,9 @@ public class Menu extends javax.swing.JFrame {
         });
         Menu.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 10, 150, 40));
 
-        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 140));
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 1024, 60));
+
+        Main.setLayout(null);
 
         TopPanel.setBackground(new java.awt.Color(51, 51, 51));
         TopPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -256,6 +309,9 @@ public class Menu extends javax.swing.JFrame {
         txtNick.setForeground(new java.awt.Color(255, 255, 255));
         txtNick.setText("Nickname");
         TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, -1));
+
+        ProgresExp.setMaximum(maks);
+        ProgresExp.setMinimum(0);
         TopPanel.add(ProgresExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 20));
 
         txtGold.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -281,9 +337,8 @@ public class Menu extends javax.swing.JFrame {
         });
         TopPanel.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 90, 40));
 
-        getContentPane().add(TopPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 120));
-
-        Main.setLayout(null);
+        Main.add(TopPanel);
+        TopPanel.setBounds(0, 0, 1020, 110);
 
         btnCustom.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCustom.setForeground(new java.awt.Color(255, 255, 255));
@@ -311,17 +366,94 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/main_menu.png"))); // NOI18N
         Main.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1030, 772);
+        jLabel1.setBounds(0, 110, 1020, 530);
 
         jLayeredPane1.add(Main);
-        Main.setBounds(0, 40, 1040, 600);
+        Main.setBounds(0, 0, 1040, 640);
 
+        Tutorial.setBackground(new java.awt.Color(255, 255, 255));
+        Tutorial.setLayout(null);
+
+        btnClose2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
+        btnClose2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClose2MouseClicked(evt);
+            }
+        });
+        btnClose2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClose2ActionPerformed(evt);
+            }
+        });
+        Tutorial.add(btnClose2);
+        btnClose2.setBounds(960, 20, 50, 53);
+
+        tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz1.png"))); // NOI18N
+        Tutorial.add(tutsBg);
+        tutsBg.setBounds(0, 0, 1030, 600);
+
+        btnTuts.add(tuts1R1);
+        tuts1R1.setSelected(true);
+        tuts1R1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuts1R1ActionPerformed(evt);
+            }
+        });
+        Tutorial.add(tuts1R1);
+        tuts1R1.setBounds(450, 610, 20, 21);
+
+        btnTuts.add(tuts2R1);
+        tuts2R1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuts2R1ActionPerformed(evt);
+            }
+        });
+        Tutorial.add(tuts2R1);
+        tuts2R1.setBounds(480, 610, 21, 21);
+
+        btnTuts.add(tuts3R1);
+        tuts3R1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuts3R1ActionPerformed(evt);
+            }
+        });
+        Tutorial.add(tuts3R1);
+        tuts3R1.setBounds(510, 610, 21, 21);
+
+        tuts1Prev1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tuts1Prev1.setText("<-");
+        tuts1Prev1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tuts1Prev1MouseClicked(evt);
+            }
+        });
+        Tutorial.add(tuts1Prev1);
+        tuts1Prev1.setBounds(430, 610, 20, 20);
+
+        tuts1Nex1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tuts1Nex1.setText("->");
+        tuts1Nex1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tuts1Nex1MouseClicked(evt);
+            }
+        });
+        Tutorial.add(tuts1Nex1);
+        tuts1Nex1.setBounds(540, 610, 20, 20);
+
+        jLayeredPane1.add(Tutorial);
+        Tutorial.setBounds(0, 0, 1020, 640);
+
+        History.setBackground(new java.awt.Color(61, 61, 61));
         History.setLayout(null);
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("History Board");
         History.add(jLabel6);
-        jLabel6.setBounds(440, 90, 130, 22);
+        jLabel6.setBounds(400, 30, 230, 80);
 
         btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
         btnClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -338,38 +470,64 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         History.add(btnClose1);
-        btnClose1.setBounds(960, 20, 50, 53);
+        btnClose1.setBounds(940, 20, 50, 53);
 
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
+        jTable1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "P1_Card", "CPU_Card", "P1_HP", "CPU_HP", "Win or Lose", "Play Time", "Date"
             }
         ));
+        jTable1.setShowGrid(false);
+        jTable1.setShowVerticalLines(true);
         jScrollPane1.setViewportView(jTable1);
 
         History.add(jScrollPane1);
-        jScrollPane1.setBounds(60, 120, 890, 402);
+        jScrollPane1.setBounds(60, 120, 890, 470);
 
         jLayeredPane1.add(History);
-        History.setBounds(0, 120, 1020, 520);
+        History.setBounds(0, 0, 1010, 750);
 
-        Tutorial.setLayout(null);
-        jLayeredPane1.add(Tutorial);
-        Tutorial.setBounds(0, 0, 1020, 640);
-
-        Achieve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Archieve.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/archieve.png"))); // NOI18N
-        Achieve.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 520));
+        Archieve.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 700));
 
-        jLayeredPane1.add(Achieve);
-        Achieve.setBounds(0, 120, 1020, 520);
+        jLayeredPane1.add(Archieve);
+        Archieve.setBounds(0, 0, 1020, 640);
 
         About.setLayout(null);
 
@@ -391,7 +549,7 @@ public class Menu extends javax.swing.JFrame {
         btnClose.setBounds(960, 10, 50, 53);
 
         jLayeredPane1.add(About);
-        About.setBounds(0, 120, 1020, 520);
+        About.setBounds(0, 110, 1020, 530);
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 640));
 
@@ -403,55 +561,26 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnMarketActionPerformed
 
-    private void btnMarketMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketMouseEntered
-        btnMarket.setBackground(new java.awt.Color(15, 15, 15));
-    }//GEN-LAST:event_btnMarketMouseEntered
-
-    private void btnMarketMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarketMouseExited
-        btnMarket.setBackground(new java.awt.Color(51, 51, 51));
-    }//GEN-LAST:event_btnMarketMouseExited
-
     private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
-        
+        hideAll();
+        Tutorial.setVisible(true);
     }//GEN-LAST:event_btnGuideActionPerformed
 
     private void btnGuideMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseEntered
-        btnGuide.setBackground(new java.awt.Color(15, 15, 15));
+        
     }//GEN-LAST:event_btnGuideMouseEntered
 
-    private void btnGuideMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuideMouseExited
-       btnGuide.setBackground(new java.awt.Color(51, 51, 51));
-    }//GEN-LAST:event_btnGuideMouseExited
-
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-
+        hideAll();
+        About.setVisible(true);
+        
     }//GEN-LAST:event_btnAboutActionPerformed
 
-    private void btnAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAboutMouseClicked
-      
-    }//GEN-LAST:event_btnAboutMouseClicked
-
-    private void btnHistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoryMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnHistoryMouseClicked
-
-    private void btnArchieveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchieveMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnArchieveMouseEntered
-
-    private void btnArchieveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArchieveMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnArchieveMouseExited
-
     private void btnArchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchieveActionPerformed
-        Achieve.setVisible(true);
-        Main.setVisible(false);
+        hideAll();
+        Archieve.setVisible(true);
+        
     }//GEN-LAST:event_btnArchieveActionPerformed
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
          File data = new File(System.getProperty("user.dir") + "/session.xml");
@@ -492,12 +621,61 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClose1MouseClicked
 
     private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
-        // TODO add your handling code here:
+        History.setVisible(false);
+        Main.setVisible(true);
     }//GEN-LAST:event_btnClose1ActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void tuts1Prev1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tuts1Prev1MouseClicked
+        if(tuts2R1.isSelected()){
+            tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz1.png")));
+            tuts1R1.setSelected(true);
+        }
+        else if(tuts3R1.isSelected()){
+            tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz2.png")));
+            tuts2R1.setSelected(true);
+        }
+    }//GEN-LAST:event_tuts1Prev1MouseClicked
+
+    private void tuts1Nex1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tuts1Nex1MouseClicked
+        if(tuts1R1.isSelected()){
+            tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz2.png")));
+            tuts2R1.setSelected(true);
+        }
+        else if(tuts2R1.isSelected()){
+            tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz3.png")));
+            tuts3R1.setSelected(true);
+        }
+    }//GEN-LAST:event_tuts1Nex1MouseClicked
+
+    private void tuts1R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuts1R1ActionPerformed
+        tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz1.png")));
+    }//GEN-LAST:event_tuts1R1ActionPerformed
+
+    private void tuts2R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuts2R1ActionPerformed
+        tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz2.png")));
+    }//GEN-LAST:event_tuts2R1ActionPerformed
+
+    private void tuts3R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuts3R1ActionPerformed
+        tutsBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/tutz3.png")));
+    }//GEN-LAST:event_tuts3R1ActionPerformed
+
+    private void btnClose2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClose2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClose2MouseClicked
+
+    private void btnClose2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose2ActionPerformed
+        Tutorial.setVisible(false);
+        Main.setVisible(true);
+    }//GEN-LAST:event_btnClose2ActionPerformed
+
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        hideAll();
+        History.setVisible(true);
+    }//GEN-LAST:event_btnHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,7 +714,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel About;
-    private javax.swing.JPanel Achieve;
+    private javax.swing.JPanel Archieve;
     private javax.swing.JPanel History;
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Menu;
@@ -547,6 +725,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnArchieve;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnClose1;
+    private javax.swing.JButton btnClose2;
     private javax.swing.JLabel btnCustom;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGuide;
@@ -554,7 +733,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMarket;
     private javax.swing.JLabel btnPlay;
+    private javax.swing.ButtonGroup btnTuts;
     private javax.swing.JLabel imgProfile;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -563,6 +744,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel tuts1Nex1;
+    private javax.swing.JLabel tuts1Prev1;
+    private javax.swing.JRadioButton tuts1R1;
+    private javax.swing.JRadioButton tuts2R1;
+    private javax.swing.JRadioButton tuts3R1;
+    private javax.swing.JLabel tutsBg;
     private javax.swing.JLabel txtExp;
     private javax.swing.JLabel txtGem;
     private javax.swing.JLabel txtGold;

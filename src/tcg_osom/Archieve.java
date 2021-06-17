@@ -80,7 +80,6 @@ public class Archieve extends javax.swing.JFrame {
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 768));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 768));
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(1024, 768));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ArchieveThumbs/AT025.png"))); // NOI18N
         jButton4.setText("jButton1");

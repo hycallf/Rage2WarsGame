@@ -12,8 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 /**
@@ -21,7 +19,11 @@ import java.time.format.DateTimeFormatter;
  * @author KuroNeko
  */
 public class GameFrame extends javax.swing.JFrame {
-private final card[] Card = new card[34];
+    
+    long startTime, endTime;
+    String elapsedTime;
+    private CrudImplement impl = new CrudImplement();
+    private final card[] Card = new card[34];
     private final int[] Indexes = new int[4];
     private int healthP1 = 10000;
     private int healthCPU = 10000;
@@ -46,6 +48,7 @@ private final card[] Card = new card[34];
      * Creates new form GameFrame
      */
     public GameFrame() {
+        startTime= System.currentTimeMillis();
         initComponents();
         setLocationRelativeTo(null);
         Card[0] = new card("HC000.png", "BC000.png", "Rick Roll", "pistol", 6000, 0);
@@ -100,23 +103,12 @@ private final card[] Card = new card[34];
     }
     
     private void recordGame(){
-        conn = Database.config();
-        String query = "insert into history (p1_card, cpu_card, p1_hp, cpu_hp, win_lose, date, account_id) value (?,?,?,?,?,?,?)";
-        try {
-            pst = conn.prepareStatement(query);
-            pst.setInt(1, P1_deck);
-            pst.setInt(2, Cpu_deck);
-            pst.setInt(3, healthP1);
-            pst.setInt(4, healthCPU);
-            pst.setString(5, state);
-            pst.setString(6, tanggal);
-            pst.setString(7, account_id);
-            pst.executeUpdate();
-        } 
-        catch (SQLException ex) {
-        Logger.getLogger(GameFrame.class.getName()).log(Level.SEVERE, null, ex);
+        try{
+            impl.setRecord(P1_deck, Cpu_deck, healthP1, healthCPU, state, tanggal, elapsedTime, account_id);
         }
-        
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
     
     private void getGoldExp(){
@@ -131,22 +123,12 @@ private final card[] Card = new card[34];
                 exp = rs.getInt("exp");
                 gold = rs.getInt("gold");
             }
+            gold += rewardGold;
+            exp += rewardExp;
+            impl.setExp(exp, account_id);
+            impl.setGold(gold, account_id);
+            
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        
-        int goldNow = gold + rewardGold;
-        int expNow = exp + rewardExp;
-        
-        String up = "update account set gold=?, exp=? where account_id=?";
-        try {
-            pst = conn.prepareStatement(up);
-            pst.setInt(1, goldNow);
-            pst.setInt(2, expNow);
-            pst.setString(3, account_id);
-            pst.executeUpdate();
-        }
-        catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
@@ -173,6 +155,8 @@ private final card[] Card = new card[34];
         txtXp.setText(" "+rewardExp);
         txtGold1.setText(" "+rewardGold);
         txtXp1.setText(" "+rewardExp);
+        txtTime.setText(""+elapsedTime);
+        txtTime1.setText(""+elapsedTime);
     }
 
     private void getFirstIndexes() {
@@ -203,7 +187,16 @@ private final card[] Card = new card[34];
     
     @SuppressWarnings("empty-statement")
     private void battle() {
-        if (Cpu.getType().equals("pistol")) {
+        if (Cpu.getType().equals("pistol")&&P1.getType().equals("pistol")) {
+            P1_deck -= 1;
+            P1_graveyard += 1;
+            Cpu_deck -= 1;
+            Cpu_graveyard += 1;
+            JOptionPane.showMessageDialog(null, "Draw!");
+            
+            turn++;
+        }
+        else if (Cpu.getType().equals("pistol")) {
             P1_deck -= 1;
             P1_graveyard += 1;
             Cpu.setDamage(Cpu.getAttack() - P1.getDefence());
@@ -255,7 +248,7 @@ private final card[] Card = new card[34];
             turn++;
         }
         
-        if (healthCPU <= 0 || Cpu_deck <= 0) {
+        if (healthCPU <= 0 || Cpu_deck == 0) {
             rewardGold = 100;
             rewardExp = 100;
             state = "WIN";
@@ -265,7 +258,7 @@ private final card[] Card = new card[34];
             recordGame();
             getGoldExp();
             
-        }else if (healthP1 <= 0 || P1_deck <= 0){
+        }else if (healthP1 <= 0 || P1_deck == 0){
             rewardGold = 0;
             rewardExp = 25;
             state = "LOSE";
@@ -275,6 +268,8 @@ private final card[] Card = new card[34];
             recordGame();
             getGoldExp();
         };
+        endTime=System.currentTimeMillis();
+        elapsedTime = String.valueOf((endTime-startTime)/1000);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -650,13 +645,13 @@ private final card[] Card = new card[34];
         txtXp.setForeground(new java.awt.Color(255, 255, 255));
         txtXp.setText("100");
         winPanel.add(txtXp);
-        txtXp.setBounds(650, 480, 70, 30);
+        txtXp.setBounds(650, 470, 100, 50);
 
         txtGold.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         txtGold.setForeground(new java.awt.Color(255, 255, 255));
         txtGold.setText("100");
         winPanel.add(txtGold);
-        txtGold.setBounds(370, 480, 70, 30);
+        txtGold.setBounds(370, 470, 90, 50);
 
         txtTime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtTime.setForeground(new java.awt.Color(255, 255, 255));
@@ -714,24 +709,15 @@ private final card[] Card = new card[34];
     }//GEN-LAST:event_deck_1ActionPerformed
 
     private void deck_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_2ActionPerformed
-        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
-        if(konfirm == 0){
-            deckOnClick(1);
-        }
+        deckOnClick(1);
     }//GEN-LAST:event_deck_2ActionPerformed
 
     private void deck_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_3ActionPerformed
-        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
-        if(konfirm == 0){
-            deckOnClick(2);
-        }
+        deckOnClick(2);
     }//GEN-LAST:event_deck_3ActionPerformed
 
     private void deck_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deck_4ActionPerformed
-        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.YES_NO_OPTION);
-        if(konfirm == 0){
-            deckOnClick(3);
-        }
+        deckOnClick(3);
     }//GEN-LAST:event_deck_4ActionPerformed
 
     private void deck_1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deck_1MouseEntered
@@ -769,7 +755,6 @@ private final card[] Card = new card[34];
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         btnMenu.setVisible(false);
         panelMenu.setVisible(true);
-        panelMenu.setSize(300,300);
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
@@ -805,11 +790,14 @@ private final card[] Card = new card[34];
     }//GEN-LAST:event_btnQuitLoseActionPerformed
 
     private void btnPlayWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayWinActionPerformed
-        // TODO add your handling code here:
+        new GameFrame().setVisible(true);
     }//GEN-LAST:event_btnPlayWinActionPerformed
 
     private void btnQuitWinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitWinActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Menu mn = new Menu();
+        mn.setVisible(true);
+        
     }//GEN-LAST:event_btnQuitWinActionPerformed
 
     /**
