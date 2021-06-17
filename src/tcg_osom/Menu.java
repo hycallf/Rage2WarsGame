@@ -74,10 +74,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     private void levelUp(){
-        if(ProgresExp.getValue()>=maks){
+        if(exp>=maks){
             level ++;
-            ProgresExp.setValue(ProgresExp.getValue()-maks);
-
+            ProgresExp.setValue(0);
             int levelUpgold = level*20 + 100;
             int levelUpgems = level*5;
             
