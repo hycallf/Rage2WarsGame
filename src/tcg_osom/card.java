@@ -11,8 +11,8 @@ package tcg_osom;
  */
 public class card {
     
-    private String image, name, type, highlight;
-    private int attack, defence, damage;
+    private String image, name, type, highlight, selectImg, rarity;
+    private int id_card, attack, defence, damage;
 
     public card(String image,String highlight, String name, String type, int attack, int defence) {
     this.image = image;
@@ -21,6 +21,42 @@ public class card {
     this.type = type;
     this.attack = attack;
     this.defence = defence;
+    }
+    
+    public card(String image, String highlight, String name, String type, int attack, int defence, int id_card, String rarity, String selectImg){
+        this.id_card = id_card;
+        this.image = image;
+        this.highlight = highlight;
+        this.name = name;
+        this.type = type;
+        this.rarity = rarity;
+        this.selectImg = selectImg;
+        this.attack = attack;
+        this.defence = defence;
+    }
+
+    public String getSelectImg() {
+        return selectImg;
+    }
+
+    public void setSelectImg(String selectImg) {
+        this.selectImg = selectImg;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    public int getId_card() {
+        return id_card;
+    }
+
+    public void setId_card(int id_card) {
+        this.id_card = id_card;
     }
 
     public String getImage() {

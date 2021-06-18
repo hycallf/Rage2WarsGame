@@ -73,9 +73,12 @@ public class Menu extends javax.swing.JFrame {
         
     }
 
+    
     private void levelUp(){
         if(exp>=maks){
-            level ++;
+            exp = exp-maks;
+            level +=1;
+            maks = level*100;
             ProgresExp.setValue(0);
             int levelUpgold = level*20 + 100;
             int levelUpgems = level*5;
@@ -85,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Congrats\n You leveled up to level "+level+"\nYou get "+levelUpgold+" gold and "+levelUpgems+" gems");
             try{
                 cli.levelUp(level,account_id);
+                cli.setExp(exp, account_id);
                 cli.setGold(gold, account_id);
                 cli.setGems(gems, account_id);
             }

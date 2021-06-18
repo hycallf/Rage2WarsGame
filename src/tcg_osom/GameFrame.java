@@ -135,7 +135,6 @@ public class GameFrame extends javax.swing.JFrame {
     
     private int getRandomIndex() {
         return new Random().nextInt(20 - 0);
-        
     }
     
     private void setAllLabel() {
