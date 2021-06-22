@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jun 2021 pada 13.40
+-- Waktu pembuatan: 22 Jun 2021 pada 12.29
 -- Versi server: 10.1.32-MariaDB
 -- Versi PHP: 7.2.5
 
@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `password` varchar(30) NOT NULL,
   `exp` int(255) NOT NULL DEFAULT '0',
   `gold` int(255) NOT NULL DEFAULT '1000',
-  `gems` int(100) NOT NULL,
+  `gems` int(100) NOT NULL DEFAULT '0',
   `level` int(100) NOT NULL DEFAULT '1',
   `email` varchar(100) NOT NULL,
   `nickname` varchar(20) NOT NULL
@@ -45,12 +45,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `username`, `password`, `exp`, `gold`, `gems`, `level`, `email`, `nickname`) VALUES
-(1, 'haikaru2001', 'udiin123', 0, 1000, 0, 1, 'ricardohaikal2001@gmail.com', 'RickRolled'),
-(2, 'jonny123', 'cage123', 25, 1000, 0, 1, 'johnchena2001@gmail.com', 'JhonnChena'),
-(4, 'joker123', 'jojo123', 0, 1000, 0, 1, 'jojo@joestar.com', 'JonathanJoestar'),
-(5, 'uus123', 'tuturu123', 0, 1000, 0, 1, 'uusdino@gmail.com', 'UUSDINO'),
-(6, 'asdasd', 'asdas', 0, 1000, 0, 1, 'asda', ''),
-(7, 'Ucuy', 'jiji', 0, 1000, 0, 1, 'ucuy@gmail.com', 'Jrox');
+(1, 'rangga123', 'rangga123', 0, 1000, 0, 1, 'lordrangga123@gmail.com', 'LordRangga');
 
 -- --------------------------------------------------------
 
@@ -59,15 +54,59 @@ INSERT INTO `account` (`account_id`, `username`, `password`, `exp`, `gold`, `gem
 --
 
 CREATE TABLE `card` (
+  `account_id` int(11) NOT NULL,
   `id_card` int(11) NOT NULL,
   `card_name` text NOT NULL,
   `att_power` int(11) NOT NULL,
   `def_power` int(11) NOT NULL,
-  `card_type` int(11) NOT NULL,
+  `card_type` varchar(11) NOT NULL,
   `img` varchar(100) NOT NULL,
+  `hand_card` varchar(30) NOT NULL,
   `highlight` varchar(100) NOT NULL,
-  `gallery` varchar(100) NOT NULL,
-  `account_id` int(11) NOT NULL
+  `selectImg` varchar(100) NOT NULL,
+  `rarity` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `card`
+--
+
+INSERT INTO `card` (`account_id`, `id_card`, `card_name`, `att_power`, `def_power`, `card_type`, `img`, `hand_card`, `highlight`, `selectImg`, `rarity`) VALUES
+(1, 14, 'Cat getting yelled', 2400, 1000, 'batu', 'IV014.png', 'HC014.png', 'BC014.png', 'DC014.png', 'A'),
+(1, 15, 'Diccbudd', 2300, 1100, 'kertas', 'IV015.png', 'HC015.png', 'BC015.png', 'DC015.png', 'A'),
+(1, 16, 'Think Mark!', 1500, 900, 'batu', 'IV016.png', 'HC016.png', 'BC016.png', 'DC016.png', 'B'),
+(1, 17, 'Mark, who can\'t think', 1500, 900, 'gunting', 'IV017.png', 'HC017.png', 'BC017.png', 'DC017.png', 'B'),
+(1, 18, 'The Blurred Girl', 1000, 1400, 'kertas', 'IV018.png', 'HC018.png', 'BC018.png', 'DC018.png', 'B'),
+(1, 19, 'The Distracted Guy', 1100, 1300, 'batu', 'IV019.png', 'HC019.png', 'BC019.png', 'DC019.png', 'B'),
+(1, 20, 'Angry GF', 1200, 1200, 'gunting', 'IV020.png', 'HC020.png', 'BC020.png', 'DC020.png', 'B'),
+(1, 21, 'Lol is u ded?', 1200, 1200, 'kertas', 'IV021.png', 'HC021.png', 'BC021.png', 'DC021.png', 'B'),
+(1, 22, 'Ded guy', 1000, 1500, 'batu', 'IV022.png', 'HC022.png', 'BC022.png', 'DC022.png', 'B'),
+(1, 23, 'U see that guy?', 1500, 700, 'gunting', 'IV023.png', 'HC023.png', 'BC023.png', 'DC023.png', 'B'),
+(1, 24, 'That Guy', 1400, 900, 'kertas', 'IV024.png', 'HC024.png', 'BC024.png', 'DC024.png', 'B'),
+(1, 25, 'Now angry guy', 1600, 500, 'batu', 'IV025.png', 'HC025.png', 'BC025.png', 'DC025.png', 'B'),
+(1, 26, 'No U', 0, 3000, 'gunting', 'IV026.png', 'HC026.png', 'BC026.png', 'DC026.png', 'B'),
+(1, 27, 'Meme Man', 1000, 1000, 'kertas', 'IV027.png', 'HC027.png', 'BC027.png', 'DC027.png', 'B'),
+(1, 28, 'Orang Man', 1000, 1000, 'batu', 'IV028.png', 'HC028.png', 'BC028.png', 'DC028.png', 'B'),
+(1, 29, 'Ara ara nee-san', 1500, 600, 'gunting', 'IV029.png', 'HC029.png', 'BC029.png', 'DC029.png', 'B'),
+(1, 30, 'Shota-kun', 1000, 1200, 'kertas', 'IV030.png', 'HC030.png', 'BC030.png', 'DC030.png', 'B'),
+(1, 31, 'Lord Elon', 1300, 900, 'batu', 'IV031.png', 'HC031.png', 'BC031.png', 'DC031.png', 'B'),
+(1, 32, 'Elons Dolphin.exe', 900, 1300, 'gunting', 'IV032.png', 'HC032.png', 'BC032.png', 'DC032.png', 'B'),
+(1, 33, 'Lord Zucc', 2700, 0, 'kertas', 'IV033.png', 'HC033.png', 'BC033.png', 'DC033.png', 'B');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `deck`
+--
+
+CREATE TABLE `deck` (
+  `account_id` int(11) NOT NULL,
+  `card_name` varchar(20) NOT NULL,
+  `att_power` int(11) NOT NULL,
+  `def_power` int(11) NOT NULL,
+  `card_type` varchar(11) NOT NULL,
+  `battle_card` varchar(100) NOT NULL,
+  `hand_card` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -77,23 +116,15 @@ CREATE TABLE `card` (
 --
 
 CREATE TABLE `history` (
-  `id_play` int(20) NOT NULL,
   `p1_card` int(3) NOT NULL,
   `cpu_card` int(3) NOT NULL,
   `p1_hp` int(10) NOT NULL,
   `cpu_hp` int(10) NOT NULL,
   `win_lose` varchar(5) NOT NULL,
   `date` varchar(20) NOT NULL,
+  `play_time` varchar(15) NOT NULL,
   `account_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `history`
---
-
-INSERT INTO `history` (`id_play`, `p1_card`, `cpu_card`, `p1_hp`, `cpu_hp`, `win_lose`, `date`, `account_id`) VALUES
-(1, 30, 28, 8200, -400, 'WIN', '13 Jun, 2021', 2),
-(2, 19, 18, 0, 900, 'LOSE', '13 Jun, 2021', 2);
 
 --
 -- Indexes for dumped tables
@@ -110,14 +141,18 @@ ALTER TABLE `account`
 -- Indeks untuk tabel `card`
 --
 ALTER TABLE `card`
-  ADD PRIMARY KEY (`id_card`),
+  ADD KEY `account_id` (`account_id`);
+
+--
+-- Indeks untuk tabel `deck`
+--
+ALTER TABLE `deck`
   ADD KEY `account_id` (`account_id`);
 
 --
 -- Indeks untuk tabel `history`
 --
 ALTER TABLE `history`
-  ADD PRIMARY KEY (`id_play`),
   ADD KEY `account_id` (`account_id`);
 
 --
@@ -128,19 +163,7 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT untuk tabel `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `card`
---
-ALTER TABLE `card`
-  MODIFY `id_card` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `history`
---
-ALTER TABLE `history`
-  MODIFY `id_play` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -151,6 +174,12 @@ ALTER TABLE `history`
 --
 ALTER TABLE `card`
   ADD CONSTRAINT `card_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
+
+--
+-- Ketidakleluasaan untuk tabel `deck`
+--
+ALTER TABLE `deck`
+  ADD CONSTRAINT `deck_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 --
 -- Ketidakleluasaan untuk tabel `history`

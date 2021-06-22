@@ -16,5 +16,8 @@ public interface CrudInterface {
             throws SQLException;
     void update(Account acc)
             throws SQLException;
-    
+    void levelUp(int level, String account_id) throws SQLException;
+    void setGold(int gold, String account_id) throws SQLException;
+    void setExp(int exp, String account_id) throws SQLException;
+    void setGems(int gems, String account_id) throws SQLException;
 }

@@ -28,6 +28,7 @@ public class Archieve extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        btnClose1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
@@ -80,6 +81,23 @@ public class Archieve extends javax.swing.JFrame {
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1024, 768));
         jLayeredPane1.setMinimumSize(new java.awt.Dimension(1024, 768));
+
+        btnClose1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose.png"))); // NOI18N
+        btnClose1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/btnClose-Hover.png"))); // NOI18N
+        btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnClose1MouseClicked(evt);
+            }
+        });
+        btnClose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClose1ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(btnClose1);
+        btnClose1.setBounds(960, 20, 50, 53);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ArchieveThumbs/AT025.png"))); // NOI18N
         jButton4.setText("jButton1");
@@ -169,7 +187,7 @@ public class Archieve extends javax.swing.JFrame {
             }
         });
         jLayeredPane1.add(jButton18);
-        jButton18.setBounds(370, 570, 100, 80);
+        jButton18.setBounds(370, 580, 100, 80);
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ArchieveThumbs/AT028.png"))); // NOI18N
         jButton19.setText("jButton1");
@@ -439,7 +457,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("blzee", 0, 24)); // NOI18N
         jLabel7.setText(":");
         jLayeredPane1.add(jLabel7);
-        jLabel7.setBounds(280, 80, 150, 50);
+        jLabel7.setBounds(280, 80, 340, 50);
 
         jLabel6.setFont(new java.awt.Font("blzee", 0, 24)); // NOI18N
         jLabel6.setText("ATK / DEF ");
@@ -485,7 +503,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("SSS Rank");
         jLabel9.setText("Gun");
         jLabel10.setText("6000 / 0");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP000.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP000.png")));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -494,7 +512,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("3000 / 1200");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP001.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP001.png")));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -503,7 +521,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("3300 / 800");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP002.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP002.png")));
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -512,7 +530,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("3000 / 1200");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP003.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP003.png")));
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -521,7 +539,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("2800 / 1600");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP004.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP004.png")));
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -530,7 +548,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("2600 / 1800");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP005.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP005.png")));
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
@@ -539,7 +557,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("S Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("3500 / 600");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP006.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP006.png")));
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -548,7 +566,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("2300 / 1000");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP007.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP007.png")));
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -557,7 +575,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("2400 / 900");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP008.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP008.png")));
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
@@ -566,7 +584,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("2200 / 1100");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP009.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP009.png")));
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -575,7 +593,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("2000 / 1500");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP010.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP010.png")));
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -584,7 +602,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("2100 / 1400");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP011.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP011.png")));
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
@@ -593,7 +611,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("2600 / 800");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP012.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP012.png")));
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -602,7 +620,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("2400 / 1100");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP013.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP013.png")));
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -611,7 +629,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("2400 / 1100");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP014.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP014.png")));
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
@@ -620,7 +638,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("A Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("2100 / 1400");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP011.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP011.png")));
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -629,7 +647,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1500 / 900");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP016.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP016.png")));
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -638,7 +656,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("1500 / 900");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP017.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP017.png")));
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -647,7 +665,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("1000 / 1400");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP018.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP018.png")));
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -656,7 +674,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1100 / 1300");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP019.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP019.png")));
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -665,7 +683,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("1200 / 1200");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP020.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP020.png")));
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
@@ -674,7 +692,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("1200 / 1200");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP021.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP021.png")));
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
@@ -683,7 +701,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1000 / 1500");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP022.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP022.png")));
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
@@ -692,7 +710,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("1500 / 700");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP023.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP023.png")));
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
@@ -701,7 +719,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("1400 / 900");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP024.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP024.png")));
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -710,7 +728,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1600 / 500");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP025.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP025.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -719,7 +737,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("0 / 3000");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP026.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP026.png")));
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -728,7 +746,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("1000 / 1000");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP027.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP027.png")));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -737,7 +755,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1000 / 1000");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP028.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP028.png")));
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -746,7 +764,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("1500 / 600");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP029.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP029.png")));
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -755,7 +773,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("1000 / 1200");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP030.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP030.png")));
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
@@ -764,7 +782,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Rock");
         jLabel10.setText("1300 / 900");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP031.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP031.png")));
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
@@ -773,7 +791,7 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Scissor");
         jLabel10.setText("900 / 1300");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP032.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP032.png")));
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
@@ -782,8 +800,18 @@ public class Archieve extends javax.swing.JFrame {
         jLabel8.setText("B Rank");
         jLabel9.setText("Paper");
         jLabel10.setText("2700 / 0");
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Source Packages/ArchievePotrait/AP033.png")));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMGSrc/ArchievePotrait/AP033.png")));
     }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void btnClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClose1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClose1MouseClicked
+
+    private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
+        this.setVisible(false);
+        Menu menu = new Menu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_btnClose1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -821,6 +849,7 @@ public class Archieve extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

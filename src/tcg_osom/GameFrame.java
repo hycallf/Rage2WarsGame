@@ -23,8 +23,9 @@ public class GameFrame extends javax.swing.JFrame {
     long startTime, endTime;
     String elapsedTime;
     private CrudImplement impl = new CrudImplement();
-    private final card[] Card = new card[34];
-    private final int[] Indexes = new int[4];
+    private card deck;
+    private card[] Card = new card[21];
+    private int[] Indexes = new int[4];
     private int healthP1 = 10000;
     private int healthCPU = 10000;
     private card Cpu, P1 = null;
@@ -48,6 +49,7 @@ public class GameFrame extends javax.swing.JFrame {
      * Creates new form GameFrame
      */
     public GameFrame() {
+        logged();
         startTime= System.currentTimeMillis();
         initComponents();
         setLocationRelativeTo(null);
@@ -72,33 +74,56 @@ public class GameFrame extends javax.swing.JFrame {
         Card[18] = new card("HC018.png", "BC018.png", "The Blurred Girl", "kertas", 1000, 1400);
         Card[19] = new card("HC019.png", "BC019.png", "The Distracted Guy", "batu", 1100, 1300);
         Card[20] = new card("HC020.png", "BC020.png", "Angry GF", "gunting", 1200, 1200);
-        Card[21] = new card("HC021.png", "BC021.png", "Lol is u ded?", "kertas", 1200, 1200);
-        Card[22] = new card("HC022.png", "BC022.png", "Ded guy", "batu", 1000, 1500);
-        Card[23] = new card("HC023.png", "BC023.png", "U see that guy?", "gunting", 1500, 700);
-        Card[24] = new card("HC024.png", "BC024.png", "That Guy", "kertas", 1400, 900);
-        Card[25] = new card("HC025.png", "BC025.png", "Now angry guy", "batu", 1600, 500);
-        Card[26] = new card("HC026.png", "BC026.png", "No U", "gunting", 0, 3000);
-        Card[27] = new card("HC027.png", "BC027.png", "Meme Man", "kertas", 1000, 1000);
-        Card[28] = new card("HC028.png", "BC028.png", "Orang Man", "batu", 1000, 1000);
-        Card[29] = new card("HC029.png", "BC029.png", "Ara ara nee-san", "gunting", 1500, 600);
-        Card[30] = new card("HC030.png", "BC030.png", "Shota-kun", "kertas", 1000, 1200);
-        Card[31] = new card("HC031.png", "BC031.png", "Lord Elon", "batu", 1300, 900);
-        Card[32] = new card("HC032.png", "BC032.png", "Elons Dolphin.exe", "gunting", 900, 1300);
-        Card[33] = new card("HC033.png", "BC033.png", "Lord Zucc", "kertas", 2700, 0);
+//        Card[21] = new card("HC021.png", "BC021.png", "Lol is u ded?", "kertas", 1200, 1200);
+//        Card[22] = new card("HC022.png", "BC022.png", "Ded guy", "batu", 1000, 1500);
+//        Card[23] = new card("HC023.png", "BC023.png", "U see that guy?", "gunting", 1500, 700);
+//        Card[24] = new card("HC024.png", "BC024.png", "That Guy", "kertas", 1400, 900);
+//        Card[25] = new card("HC025.png", "BC025.png", "Now angry guy", "batu", 1600, 500);
+//        Card[26] = new card("HC026.png", "BC026.png", "No U", "gunting", 0, 3000);
+//        Card[27] = new card("HC027.png", "BC027.png", "Meme Man", "kertas", 1000, 1000);
+//        Card[28] = new card("HC028.png", "BC028.png", "Orang Man", "batu", 1000, 1000);
+//        Card[29] = new card("HC029.png", "BC029.png", "Ara ara nee-san", "gunting", 1500, 600);
+//        Card[30] = new card("HC030.png", "BC030.png", "Shota-kun", "kertas", 1000, 1200);
+//        Card[31] = new card("HC031.png", "BC031.png", "Lord Elon", "batu", 1300, 900);
+//        Card[32] = new card("HC032.png", "BC032.png", "Elons Dolphin.exe", "gunting", 900, 1300);
+//        Card[33] = new card("HC033.png", "BC033.png", "Lord Zucc", "kertas", 2700, 0);
+        winPanel.setVisible(false);
+        losePanel.setVisible(false);
+        panelMenu.setVisible(false);
+        getDeck();
         getFirstIndexes();
         setImageDeck();
         setAllLabel();
-        logged();
+        
         getDate();
         
     }
 
+    private void getDeck(){
+        conn = Database.config();
+        String query = "select * from deck where account_id = ?";
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1,account_id);
+            rs = pst.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                deck = new card(rs.getString("hand_card"), rs.getString("battle_card"), rs.getString("card_name"),rs.getString("card_type"), rs.getInt("att_power"), rs.getInt("def_power"));
+                Card[i] = deck;
+                i++;
+                
+                System.out.println(Card[i].getName()+" | "+Card[i].getAttack()+" | "+Card[i].getDefence());
+            }
+            }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     private void logged(){
         account_id = tcg_osom.Database.getUserId();
         nick = tcg_osom.Database.getNickname();
-        winPanel.setVisible(false);
-        losePanel.setVisible(false);
-        panelMenu.setVisible(false);
+        
         
     }
     
@@ -268,7 +293,7 @@ public class GameFrame extends javax.swing.JFrame {
             getGoldExp();
         };
         endTime=System.currentTimeMillis();
-        elapsedTime = String.valueOf((endTime-startTime)/1000);
+        elapsedTime = String.valueOf((endTime-startTime)/1000+" second");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -770,7 +795,7 @@ public class GameFrame extends javax.swing.JFrame {
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         Menu main = new Menu();
         
-        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Select Card", JOptionPane.OK_OPTION);
+        int konfirm = JOptionPane.showConfirmDialog(null, "Are You Sure?.","Quit Game", JOptionPane.OK_OPTION);
         if(konfirm == 0){
             main.setVisible(true);
             this.dispose();

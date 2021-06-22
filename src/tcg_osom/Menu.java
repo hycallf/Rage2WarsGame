@@ -19,7 +19,8 @@ import javax.swing.table.*;
 public class Menu extends javax.swing.JFrame {
 
     String account_id;
-    int level, gold, gems, exp, maks;
+    int level, gold, gems, exp;
+    int maks;
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -36,8 +37,10 @@ public class Menu extends javax.swing.JFrame {
         logged();
         levelUp();
         tableHistory();
+        setAllText();
         hideAll();
         Main.setVisible(true);
+        
     }
     
     
@@ -53,33 +56,32 @@ public class Menu extends javax.swing.JFrame {
             
             if (rs.next()) {
                 level = rs.getInt("level");
-                txtLv.setText(String.valueOf("level "+level));
-                
-                exp = rs.getInt("exp");
-                ProgresExp.setValue(exp);
                 maks = level*100;
-                txtExp.setText(exp+" / "+maks);
-                
+                exp = rs.getInt("exp");
                 gold = rs.getInt("gold");
-                txtGold.setText(String.valueOf(gold));
-                
                 gems = rs.getInt("gems");
-                txtGem.setText(String.valueOf(gems));
-                        
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         
     }
-
+    
+    private void setAllText(){
+        txtLv.setText(String.valueOf("level "+level));
+        ProgresExp.setValue(exp);
+        txtExp.setText(exp+" / "+maks);
+        txtGold.setText(String.valueOf(gold));
+        txtGem.setText(String.valueOf(gems));
+    }
     
     private void levelUp(){
         if(exp>=maks){
             exp = exp-maks;
             level +=1;
             maks = level*100;
-            ProgresExp.setValue(0);
+            ProgresExp.setValue(exp);
+            ProgresExp.setMaximum(maks);
             int levelUpgold = level*20 + 100;
             int levelUpgems = level*5;
             
@@ -312,9 +314,6 @@ public class Menu extends javax.swing.JFrame {
         txtNick.setForeground(new java.awt.Color(255, 255, 255));
         txtNick.setText("Nickname");
         TopPanel.add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 90, -1));
-
-        ProgresExp.setMaximum(maks);
-        ProgresExp.setMinimum(0);
         TopPanel.add(ProgresExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 20));
 
         txtGold.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -346,6 +345,11 @@ public class Menu extends javax.swing.JFrame {
         btnCustom.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnCustom.setForeground(new java.awt.Color(255, 255, 255));
         btnCustom.setText("Customize");
+        btnCustom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCustomMouseClicked(evt);
+            }
+        });
         Main.add(btnCustom);
         btnCustom.setBounds(430, 510, 130, 60);
 
@@ -580,8 +584,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnArchieveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArchieveActionPerformed
-        hideAll();
-        Archieve.setVisible(true);
+        this.dispose();
+        Archieve arc = new Archieve();
+        arc.setVisible(true);
         
     }//GEN-LAST:event_btnArchieveActionPerformed
 
@@ -679,6 +684,13 @@ public class Menu extends javax.swing.JFrame {
         hideAll();
         History.setVisible(true);
     }//GEN-LAST:event_btnHistoryActionPerformed
+
+    private void btnCustomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCustomMouseClicked
+        Deck deck = new Deck();
+        this.dispose();
+        deck.setVisible(true);
+
+    }//GEN-LAST:event_btnCustomMouseClicked
 
     /**
      * @param args the command line arguments
