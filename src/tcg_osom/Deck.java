@@ -1490,32 +1490,48 @@ public class Deck extends javax.swing.JFrame {
         String set = "insert into deck(account_id, card_name, att_power, def_power, card_type, battle_card, hand_card, id_card) values(?,?,?,?,?,?,?,?)";
 
 //        String set = "update deck set id_card=?, card_name=?, att_power=?, def_power=?, card_type=?, battle_card=?, hand_card=? where account_id=?";
-        try {
-            pst = conn.prepareStatement(del);
-            pst.setString(1, account_id);
-            pst.execute();
-            
-            pst = conn.prepareStatement(set);
-            for(int i = 0; i<20; i++){
-                
-                pst.setString(1, account_id);
-                pst.setString(2, deck[i].getName());
-                pst.setInt(3, deck[i].getAttack());
-                pst.setInt(4, deck[i].getDefence());
-                pst.setString(5, deck[i].getType());
-                pst.setString(6, deck[i].getHighlight());
-                pst.setString(7, deck[i].getImage());
-                pst.setInt(8, i+1);
-                pst.executeUpdate();
-                
-                System.out.println(deck[i].getName()+"|"+deck[i].getAttack()+"|"+deck[i].getDefence()+"|"+deck[i].getType());
+        boolean checkDuplicate = false;
+        for (int a = 0; a < 20; a++){
+            for(int b = a+1; b < 20; b++){
+                if(deck[a].getName().equals(deck[b].getName())){
+                    checkDuplicate = true;
+                    
+                }
             }
-            
-            JOptionPane.showMessageDialog(null, "Berhasil merubah kartu di Deck!");
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
+        
+        if(checkDuplicate == true){
+            JOptionPane.showMessageDialog(null, "Terdapat kartu duplikat, Tidak boleh menggunakan kartu yang sama");
         }
+        else{
+            try {
+                pst = conn.prepareStatement(del);
+                pst.setString(1, account_id);
+                pst.execute();
+
+                pst = conn.prepareStatement(set);
+                for(int i = 0; i<20; i++){
+
+                    pst.setString(1, account_id);
+                    pst.setString(2, deck[i].getName());
+                    pst.setInt(3, deck[i].getAttack());
+                    pst.setInt(4, deck[i].getDefence());
+                    pst.setString(5, deck[i].getType());
+                    pst.setString(6, deck[i].getHighlight());
+                    pst.setString(7, deck[i].getImage());
+                    pst.setInt(8, i+1);
+                    pst.executeUpdate();
+
+                    System.out.println(deck[i].getName()+"|"+deck[i].getAttack()+"|"+deck[i].getDefence()+"|"+deck[i].getType());
+                }
+
+                JOptionPane.showMessageDialog(null, "Berhasil merubah kartu di Deck!");
+            }
+            catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+        }
+    
     }//GEN-LAST:event_btnSetDeckActionPerformed
 
     /**
