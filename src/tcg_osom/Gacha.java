@@ -32,6 +32,15 @@ public class Gacha {
         
         return characterList;
     }
+     public static List<PoolModel> huntMenu1(){
+        Pool gacha = new Pool();
+        List<PoolModel> characterList = gacha.pickSatu();
+        characters.addAll(characterList);
+        counterResult();
+        increaseCounter();
+        
+        return characterList;
+    }
 
     private static void increaseCounter(){
     	counter++;

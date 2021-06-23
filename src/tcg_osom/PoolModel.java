@@ -15,6 +15,7 @@ public class PoolModel {
     private Integer id;
     private String name;
     private String tier;
+    private String pict;
 
     public Integer getId() {
         return id;
@@ -43,10 +44,16 @@ public class PoolModel {
     public void setTier(String tier) {
         this.tier = tier;
     }
+    public void setPict(String pict){
+        this.pict = pict;
+    }
+    public String getPict(){
+        return pict;
+    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tier, name);
+        return Objects.hash(id, tier, name, pict);
     }
 
     @Override
@@ -55,6 +62,7 @@ public class PoolModel {
         PoolModel that = (PoolModel) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(tier, that.tier) &&
-                Objects.equals(id, that.id);
+                Objects.equals(id, that.id) &&
+                Objects.equals(pict, that.pict);
     }
 }
